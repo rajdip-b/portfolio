@@ -21,10 +21,10 @@ const Contact = () => {
 			<h1 className={'text-3xl font-medium border-b-4 border-b-primary w-[30%] pb-3'}>Hire Me!</h1>
 			<div className={'flex items-center h-full justify-center gap-x-20 mt-[100px] w-full mx-auto'}>
 				<div className={'w-1/2 flex flex-col gap-y-10 items-start'}>
-					<div className={'font-bold text-7xl text-primary'}>Let's Talk</div>
+					<div className={'font-bold text-7xl text-primary'}>Let&apos;s Talk</div>
 					<div className={'text-2xl fonts-semibold text-gray-300'}>
 						Feel you have some project that needs some professional touch? Or maybe you just want to have
-						some chat with me? Feel free to contact me! I'm always open for new opportunities.
+						some chat with me? Feel free to contact me! I&apos;m always open for new opportunities.
 					</div>
 				</div>
 				<div className={'w-1/2 flex flex-col gap-5'}>
