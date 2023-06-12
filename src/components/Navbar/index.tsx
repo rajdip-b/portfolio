@@ -5,6 +5,8 @@ import LinkedIn from '@mui/icons-material/LinkedIn';
 import Facebook from '@mui/icons-material/Facebook';
 import GitHub from '@mui/icons-material/GitHub';
 import { useRouter } from 'next/router';
+import socials from '@/data/socials';
+import MenuRounded from '@mui/icons-material/MenuRounded';
 
 const links = [
 	{
@@ -35,26 +37,54 @@ const orionPrime = localFont({
 
 const Navbar = () => {
 	const router = useRouter();
+	const [expanded, setExpanded] = React.useState(false);
 
 	return (
-		<div className={'w-screen px-20 bg-dark-primary py-10 flex justify-between text-white'}>
-			<span className={`${orionPrime.className}`}>R.B</span>
-			<div className={'flex gap-x-8'}>
-				{
-					links.map((link, index) => (
-						<Link
-							scroll={false}
-							className={`${router.asPath.split('/')[1] === link.href ? 'text-primary' : 'text-white'} transition-all ease-out duration-300`}
-							href={link.href} key={index}>{link.name}</Link>
-					))
-				}
+		<>
+			<div
+				className={'w-screen px-5 md:px-10 lg:px-20 absolute bg-dark-primary py-10 justify-between text-white md:flex hidden'}>
+				<span className={`${orionPrime.className}`}>R.B</span>
+				<div className={'flex gap-x-8'}>
+					{
+						links.map((link, index) => (
+							<Link
+								scroll={false}
+								className={`${router.asPath.split('/')[1] === link.href ? 'text-primary' : 'text-white'} transition-all ease-out duration-300`}
+								href={link.href} key={index}>{link.name}</Link>
+						))
+					}
+				</div>
+				<div className={'flex gap-x-4'}>
+					<a href={socials.linkedin}><LinkedIn /></a>
+					<a href={socials.github}><GitHub /></a>
+					<a href={socials.facebook}><Facebook /></a>
+				</div>
 			</div>
-			<div className={'flex gap-x-4'}>
-				<a href={''}><LinkedIn /></a>
-				<a href={''}><GitHub /></a>
-				<a href={''}><Facebook /></a>
+			<div
+				className={`flex md:hidden flex-col absolute text-white w-screen ${expanded ? 'h-[340px] drop-shadow-xl bg-dark-secondary' : 'h-[100px] bg-dark-primary'} overflow-hidden transition-all ease-in-out duration-300`}>
+				<div className={'px-5 py-10 flex justify-between items-center'}>
+					<span className={`${orionPrime.className}`}>R.B</span>
+					<button onClick={() => setExpanded(prev => !prev)}><MenuRounded /></button>
+				</div>
+				<div className={'flex flex-col gap-y-5 items-center'}>
+					<div className={'flex flex-col gap-y-2 text-center'}>
+						{
+							links.map((link, index) => (
+								<Link
+									scroll={false}
+									className={`${router.asPath.split('/')[1] === link.href ? 'text-primary' : 'text-white'} transition-all ease-out duration-300`}
+									href={link.href} key={index}>{link.name}</Link>
+							))
+						}
+					</div>
+					<div className={'gap-x-4 flex'}>
+						<a href={socials.linkedin}><LinkedIn /></a>
+						<a href={socials.github}><GitHub /></a>
+						<a href={socials.facebook}><Facebook /></a>
+					</div>
+				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 

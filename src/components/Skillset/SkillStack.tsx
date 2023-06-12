@@ -11,9 +11,10 @@ const SkillStack: React.FC<Props> = ({ stack }) => {
 	return (
 		<div
 			className={`rounded-lg bg-dark-primary py-10 px-16 w-full items-center justify-start flex flex-col gap-y-5 hover:drop-shadow-2xl drop-shadow transition-all ease-out duration-300`}>
-			<Image width={70} height={70} src={require(`../../assets/images/${stack.logo}`)} alt={''} />
-			<div className={'text-xl font-semibold'}>{stack.title}</div>
-			<div className={'text-center'}>{stack.subtitle}</div>
+			<Image width={70} height={70} src={require(`../../assets/images/${stack.logo}`)}
+				   alt={stack.logo.split('.')[0]} />
+			<div className={'text-xl font-semibold text-center'}>{stack.title}</div>
+			<div className={'text-center text-center'}>{stack.subtitle}</div>
 			<div
 				className={'flex gap-3 cursor-pointer my-5 w-full flex-wrap items-center justify-center'}>
 				{

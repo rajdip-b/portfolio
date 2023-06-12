@@ -1,6 +1,7 @@
 import React from 'react';
 import StyledInput from '@/components/common/StyledInput';
 import StyledButton from '@/components/common/StyledButton';
+import Layout from '@/components/common/Layout';
 
 const Contact = () => {
 	const [form, setForm] = React.useState({
@@ -16,18 +17,30 @@ const Contact = () => {
 		}));
 	}, []);
 
+	const handleSubmit = React.useCallback(() => {
+		console.log(form);
+		if (form.name && form.email && form.message) {
+			// TODO: Send to backend
+			setForm({
+				name: '',
+				email: '',
+				message: '',
+			});
+		}
+	}, [form]);
+
 	return (
-		<div className={'w-screen px-20 py-16 min-h-screen bg-dark-secondary text-white'} id={'contact'}>
-			<h1 className={'text-3xl font-medium border-b-4 border-b-primary w-[30%] pb-3'}>Hire Me!</h1>
-			<div className={'flex items-center h-full justify-center gap-x-20 mt-[100px] w-full mx-auto'}>
-				<div className={'w-1/2 flex flex-col gap-y-10 items-start'}>
-					<div className={'font-bold text-7xl text-primary'}>Let&apos;s Talk</div>
-					<div className={'text-2xl fonts-semibold text-gray-300'}>
+		<Layout className={'h-fit'} title={'Hire Me!'} id={'contact'}>
+			<div
+				className={'flex flex-col md:flex-row items-center h-full justify-center gap-x-20 gap-y-16 mt-[100px] w-full mx-auto'}>
+				<div className={'w-full md:w-1/2 flex flex-col gap-y-10 items-start'}>
+					<div className={'font-bold text-6xl md:text-7xl text-primary'}>Let&apos;s Talk</div>
+					<div className={'text-xl md:text-2xl fonts-semibold text-gray-300'}>
 						Feel you have some project that needs some professional touch? Or maybe you just want to have
 						some chat with me? Feel free to contact me! I&apos;m always open for new opportunities.
 					</div>
 				</div>
-				<div className={'w-1/2 flex flex-col gap-5'}>
+				<div className={'w-full md:w-1/2 flex flex-col gap-5'}>
 					<StyledInput
 						type={'text'}
 						label={'Name'}
@@ -55,7 +68,7 @@ const Contact = () => {
 					<StyledButton className={'mt-5'} filled={false}>Contact Me</StyledButton>
 				</div>
 			</div>
-		</div>
+		</Layout>
 	);
 };
 
