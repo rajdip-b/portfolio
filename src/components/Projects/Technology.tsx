@@ -7,7 +7,7 @@ type Props = {
 const Technology: React.FC<Props> = ({ technology }) => {
 	return (
 		<div
-			className={'px-4 py-2 dark:bg-yellow-dark/10 bg-yellow-light/20 text-sm cursor-pointer text-dark-primary dark:text-primary rounded-full'}>
+			className={'px-4 py-2 dark:bg-yellow-dark/20 bg-yellow-light/20 text-sm cursor-pointer dark:text-yellow-dark text-dark-primary dark:text-primary rounded-full'}>
 			{technology}
 		</div>
 	);

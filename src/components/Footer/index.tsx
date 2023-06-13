@@ -4,6 +4,7 @@ import LinkedIn from '@mui/icons-material/LinkedIn';
 import GitHub from '@mui/icons-material/GitHub';
 import Facebook from '@mui/icons-material/Facebook';
 import socials from '@/data/socials';
+import { AnimationOnScroll } from 'react-animation-on-scroll';
 
 const orionPrime = localFont({
 	src: '../../assets/fonts/Orionprimedemo.ttf',
@@ -11,8 +12,8 @@ const orionPrime = localFont({
 
 const Footer = () => {
 	return (
-		<div
-			className={'w-screen py-16 bg-light-secondary dark:bg-dark-secondary text-dark-primary dark:text-light-primary'}>
+		<AnimationOnScroll animateIn={'animate__fadeIn'} animateOnce={true}
+						   className={'w-screen py-16 bg-light-secondary dark:bg-dark-secondary text-dark-primary dark:text-light-primary'}>
 			<div className={'flex items-center gap-x-3 px-5 md:px-10 lg:px-20'}>
 				<span className={`${orionPrime.className} text-3xl`}>R.B</span>
 				<div className={'flex flex-col dark:text-gray-400 text-gray-600'}>
@@ -51,7 +52,7 @@ const Footer = () => {
 			<div className={'dark:text-gray-400 text-gray-600 text-center mt-5'}>Made with <span
 				className={'text-red-500 text-lg'}>&#9829;</span> by Rajdip
 			</div>
-		</div>
+		</AnimationOnScroll>
 	);
 };
 

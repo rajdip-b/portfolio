@@ -69,7 +69,7 @@ const Navbar: React.FC<Props> = ({ onToggleMode }) => {
 				</div>
 			</div>
 			<div
-				className={`flex md:hidden flex-col absolute text-dark-primary dark:text-light-primary w-screen ${expanded ? 'h-[340px] drop-shadow-xl bg-light-secondary dark:bg-dark-secondary' : 'h-[100px] bg-light-primary dark:bg-dark-primary'} overflow-hidden transition-all ease-in-out duration-300`}>
+				className={`z-10 flex md:hidden flex-col absolute text-dark-primary dark:text-light-primary w-screen ${expanded ? 'h-[340px] drop-shadow-xl bg-light-secondary dark:bg-dark-secondary' : 'h-[100px] bg-light-primary dark:bg-dark-primary'} overflow-hidden transition-all ease-in-out duration-300`}>
 				<div className={'px-5 py-10 flex justify-between items-center'}>
 					<span className={`${orionPrime.className}`}>R.B</span>
 					<div className={'flex gap-x-5'}>
