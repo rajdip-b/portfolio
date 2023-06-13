@@ -35,7 +35,7 @@ const Contact = () => {
 				className={'flex flex-col md:flex-row items-center h-full justify-center gap-x-20 gap-y-16 mt-[100px] w-full mx-auto'}>
 				<div className={'w-full md:w-1/2 flex flex-col gap-y-10 items-start'}>
 					<div className={'font-bold text-6xl md:text-7xl text-primary'}>Let&apos;s Talk</div>
-					<div className={'text-xl md:text-2xl fonts-semibold text-gray-300'}>
+					<div className={'text-xl md:text-2xl fonts-semibold text-gray-600 dark:text-gray-300'}>
 						Feel you have some project that needs some professional touch? Or maybe you just want to have
 						some chat with me? Feel free to contact me! I&apos;m always open for new opportunities.
 					</div>
@@ -65,7 +65,8 @@ const Contact = () => {
 						onChange={handleChange}
 						placeholder={'Hello, I would like to hire you for a project...'}
 					/>
-					<StyledButton className={'mt-5'} filled={false}>Contact Me</StyledButton>
+					<StyledButton className={'mt-5 rounded-full w-full'} filled>Contact
+						Me</StyledButton>
 				</div>
 			</div>
 		</Layout>

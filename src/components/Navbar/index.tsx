@@ -7,6 +7,11 @@ import GitHub from '@mui/icons-material/GitHub';
 import { useRouter } from 'next/router';
 import socials from '@/data/socials';
 import MenuRounded from '@mui/icons-material/MenuRounded';
+import DarkModeToggler from '@/components/Navbar/DarkModeToggler';
+
+type Props = {
+	onToggleMode: () => void;
+}
 
 const links = [
 	{
@@ -35,36 +40,42 @@ const orionPrime = localFont({
 	src: '../../assets/fonts/Orionprimedemo.ttf',
 });
 
-const Navbar = () => {
+const Navbar: React.FC<Props> = ({ onToggleMode }) => {
 	const router = useRouter();
 	const [expanded, setExpanded] = React.useState(false);
 
 	return (
 		<>
 			<div
-				className={'w-screen px-5 md:px-10 lg:px-20 absolute bg-dark-primary py-10 justify-between text-white md:flex hidden'}>
+				className={'w-screen px-5 md:px-10 lg:px-20 absolute bg-light-primary dark:bg-dark-primary py-10 justify-between text-dark-primary dark:text-light-primary md:flex hidden'}>
 				<span className={`${orionPrime.className}`}>R.B</span>
 				<div className={'flex gap-x-8'}>
 					{
 						links.map((link, index) => (
 							<Link
 								scroll={false}
-								className={`${router.asPath.split('/')[1] === link.href ? 'text-primary' : 'text-white'} transition-all ease-out duration-300`}
+								className={`${router.asPath.split('/')[1] === link.href ? 'text-primary' : 'text-dark-primary dark:text-light-primary'} transition-all ease-out duration-300`}
 								href={link.href} key={index}>{link.name}</Link>
 						))
 					}
 				</div>
-				<div className={'flex gap-x-4'}>
-					<a href={socials.linkedin}><LinkedIn /></a>
-					<a href={socials.github}><GitHub /></a>
-					<a href={socials.facebook}><Facebook /></a>
+				<div className={'flex flex-row gap-x-5 items-center'}>
+					<DarkModeToggler onToggleMode={onToggleMode} />
+					<div className={'flex gap-x-4'}>
+						<a href={socials.linkedin}><LinkedIn /></a>
+						<a href={socials.github}><GitHub /></a>
+						<a href={socials.facebook}><Facebook /></a>
+					</div>
 				</div>
 			</div>
 			<div
-				className={`flex md:hidden flex-col absolute text-white w-screen ${expanded ? 'h-[340px] drop-shadow-xl bg-dark-secondary' : 'h-[100px] bg-dark-primary'} overflow-hidden transition-all ease-in-out duration-300`}>
+				className={`flex md:hidden flex-col absolute text-dark-primary dark:text-light-primary w-screen ${expanded ? 'h-[340px] drop-shadow-xl bg-light-secondary dark:bg-dark-secondary' : 'h-[100px] bg-light-primary dark:bg-dark-primary'} overflow-hidden transition-all ease-in-out duration-300`}>
 				<div className={'px-5 py-10 flex justify-between items-center'}>
 					<span className={`${orionPrime.className}`}>R.B</span>
-					<button onClick={() => setExpanded(prev => !prev)}><MenuRounded /></button>
+					<div className={'flex gap-x-5'}>
+						<DarkModeToggler onToggleMode={onToggleMode} />
+						<button onClick={() => setExpanded(prev => !prev)}><MenuRounded /></button>
+					</div>
 				</div>
 				<div className={'flex flex-col gap-y-5 items-center'}>
 					<div className={'flex flex-col gap-y-2 text-center'}>
@@ -72,7 +83,7 @@ const Navbar = () => {
 							links.map((link, index) => (
 								<Link
 									scroll={false}
-									className={`${router.asPath.split('/')[1] === link.href ? 'text-primary' : 'text-white'} transition-all ease-out duration-300`}
+									className={`${router.asPath.split('/')[1] === link.href ? 'text-yellow-light dark:text-yellow-dark' : 'text-dark-primary dark:text-light-primary'} transition-all ease-out duration-300`}
 									href={link.href} key={index}>{link.name}</Link>
 							))
 						}
