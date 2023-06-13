@@ -20,8 +20,9 @@ const SkillStack: React.FC<Props> = ({ stack }) => {
 				className={'flex gap-3 cursor-pointer my-5 w-full flex-wrap items-center justify-center'}>
 				{
 					stack.skills.map((skill, index) => (
-						<AnimationOnScroll animateIn={'animate__fadeInRight'} animateOnce delay={index * 200}>
-							<Skill skill={skill} key={index} />
+						<AnimationOnScroll key={index} animateIn={'animate__fadeInRight'} animateOnce
+										   delay={index * 200}>
+							<Skill skill={skill} />
 						</AnimationOnScroll>
 					))
 				}

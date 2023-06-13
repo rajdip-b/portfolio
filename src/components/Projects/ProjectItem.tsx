@@ -25,8 +25,9 @@ const ProjectItem: React.FC<Props> = ({ project }) => {
 			</AnimationOnScroll>
 			<div className={'flex flex-wrap gap-3 mt-3'}>
 				{project.technologies.map((technology, index) => (
-					<AnimationOnScroll animateIn={'animate__fadeInUp'} delay={index * 200} animateOnce={true}>
-						<Technology technology={technology} key={index} />
+					<AnimationOnScroll key={index} animateIn={'animate__fadeInUp'} delay={index * 200}
+									   animateOnce={true}>
+						<Technology technology={technology} />
 					</AnimationOnScroll>
 				))}
 			</div>
