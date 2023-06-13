@@ -16,23 +16,6 @@ const experiences: TExperience[] = [
 	},
 	{
 		title: 'Backend Developer Intern',
-		company: 'TrainingMug',
-		location: 'Hyderabad, Telangana, India',
-		startDate: 'December 2022',
-		endDate: 'July 2023',
-		tasks: [
-			'Learned and worked on microservice architecture',
-			'Created 6 microservices using SpringBoot',
-			'Used RabbitMQ to interconnect microservices',
-			'Used Jenkins CI/CD with GitLab to deploy staging server',
-			'Dockerized services and used Kubernetes to deploy to AWS EKS',
-			'Created Discord messaging integrations with Jenkins and GitLab',
-			'Documented API on Postman',
-			'Hosted servers on AWS and DigitalOcean',
-		],
-	},
-	{
-		title: 'Backend Developer Intern',
 		company: 'HealthBarosa',
 		location: 'Hyderabad, Telangana, India',
 		startDate: 'April 2023',
@@ -46,15 +29,32 @@ const experiences: TExperience[] = [
 		],
 	},
 	{
-		title: 'Mobile App Developer Intern',
-		company: 'Elga Roma',
-		location: 'Mumbai, Maharashtra, India',
-		startDate: 'July 2023',
+		title: 'Backend Developer Intern',
+		company: 'TrainingMug',
+		location: 'Hyderabad, Telangana, India',
+		startDate: 'December 2022',
 		endDate: 'Present',
 		tasks: [
-			'Nothing for now',
+			'Learned and worked on microservice architecture',
+			'Created 6 microservices using SpringBoot',
+			'Used RabbitMQ to interconnect microservices',
+			'Used Jenkins CI/CD with GitLab to deploy staging server',
+			'Dockerized services and used Kubernetes to deploy to AWS EKS',
+			'Created Discord messaging integrations with Jenkins and GitLab',
+			'Documented API on Postman',
+			'Hosted servers on AWS and DigitalOcean',
 		],
 	},
+	// {
+	// 	title: 'Mobile App Developer Intern',
+	// 	company: 'Elga Roma',
+	// 	location: 'Mumbai, Maharashtra, India',
+	// 	startDate: 'July 2023',
+	// 	endDate: 'Present',
+	// 	tasks: [
+	// 		'Nothing for now',
+	// 	],
+	// },
 ];
 
 export default experiences;
