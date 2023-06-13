@@ -9,6 +9,7 @@ import Head from 'next/head';
 import Footer from '@/components/Footer';
 import React from 'react';
 import 'animate.css';
+import ToastCard from '@/components/common/ToastCard';
 
 const poppins = Poppins({
 	weight: ['300', '400', '500', '600', '700', '800', '900'],
@@ -21,7 +22,7 @@ export default function Home() {
 	const toggleDarkMode = React.useCallback(() => setIsDark(prev => !prev), []);
 
 	return (
-		<>
+		<ToastCard darkMode={dark}>
 			<Head>
 				<title>Rajdip Bhattacharya</title>
 			</Head>
@@ -34,6 +35,6 @@ export default function Home() {
 				<Contact />
 				<Footer />
 			</main>
-		</>
+		</ToastCard>
 	);
 }

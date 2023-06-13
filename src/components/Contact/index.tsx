@@ -3,6 +3,8 @@ import StyledInput from '@/components/common/StyledInput';
 import StyledButton from '@/components/common/StyledButton';
 import Layout from '@/components/common/Layout';
 import { AnimationOnScroll } from 'react-animation-on-scroll';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const Contact = () => {
 	const [form, setForm] = React.useState({
@@ -19,15 +21,28 @@ const Contact = () => {
 	}, []);
 
 	const handleSubmit = React.useCallback(() => {
-		console.log(form);
-		if (form.name && form.email && form.message) {
-			// TODO: Send to backend
-			setForm({
-				name: '',
-				email: '',
-				message: '',
-			});
+		if (form.name === '') {
+			toast.error('Name is required!');
+			return;
 		}
+		if (form.email === '') {
+			toast.error('Email is required!');
+			return;
+		}
+		if (form.message === '') {
+			toast.error('Sending empty message is sort of absurd!');
+			return;
+		}
+
+		toast.promise(axios({
+			method: 'POST',
+			url: '/api/contact',
+			data: form,
+		}), {
+			pending: 'Sending...',
+			success: 'Message sent!',
+			error: 'Failed to send message!',
+		});
 	}, [form]);
 
 	return (
@@ -76,8 +91,12 @@ const Contact = () => {
 						/>
 					</AnimationOnScroll>
 					<AnimationOnScroll animateOnce animateIn={'animate__fadeIn'} delay={1500}>
-						<StyledButton className={'mt-5 rounded-full w-full'} filled>Contact
-							Me</StyledButton>
+						<StyledButton
+							onClick={handleSubmit}
+							className={'mt-5 rounded-full w-full'}
+							filled>
+							Contact Me
+						</StyledButton>
 					</AnimationOnScroll>
 				</div>
 			</div>
