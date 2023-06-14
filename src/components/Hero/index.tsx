@@ -21,7 +21,7 @@ const Hero = () => {
 						className={'text-yellow-light dark:yellow-light'}>Rajdip</span></h1>
 				</AnimationOnScroll>
 				<AnimationOnScroll animateIn={'animate__fadeInUp'} delay={800} animateOnce animatePreScroll={false}>
-					<h2 className={'text-xl md:text-2xl lg:text-3xl font-semibold'}>I am A Full-stack Developer based in
+					<h2 className={'text-xl md:text-2xl lg:text-3xl font-semibold'}>I am a Full-stack Developer based in
 						Kolkata,
 						India.</h2>
 				</AnimationOnScroll>

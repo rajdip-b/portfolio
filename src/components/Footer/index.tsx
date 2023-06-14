@@ -17,8 +17,8 @@ const Footer = () => {
 			<div className={'flex items-center gap-x-3 px-5 md:px-10 lg:px-20'}>
 				<span className={`${orionPrime.className} text-3xl`}>R.B</span>
 				<div className={'flex flex-col dark:text-gray-400 text-gray-600'}>
-					<div className={'text-sm'}>Full Stack Engineer</div>
-					<div className={'text-sm'}>DevOps, Cloud and</div>
+					<div className={'text-sm'}>Full-stack, DevOps and</div>
+					<div className={'text-sm'}>Cloud Engineer</div>
 				</div>
 			</div>
 			<div
