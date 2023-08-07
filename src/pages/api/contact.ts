@@ -30,8 +30,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 		from: process.env.NEXT_PUBLIC_MAIL_USERNAME,
 		to: process.env.NEXT_PUBLIC_MAIL_USERNAME,
 		subject: `Contact from ${body.name}`,
-		text: body.message,
-		html: `<p>${body.message}</p>`,
+		text: `Message: ${body.message}, Email: ${body.email}`,
+		html: `<p>Message: ${body.message}, Email: ${body.email}</p>`,
 	}).then(() => {
 		res.status(200).send({});
 	}).catch((error) => {
