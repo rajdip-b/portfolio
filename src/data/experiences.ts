@@ -30,6 +30,21 @@ const experiences: TExperience[] = [
 	},
 	{
 		title: 'Backend Developer Intern',
+		company: 'ElgaRoma',
+		location: 'Pune, Maharashtra, India',
+		startDate: 'July 2023',
+		endDate: 'August 2023',
+		tasks: [
+			'Engineered Spring Boot app integrating external service.',
+			'Developed Python Lambda for internal coordination.',
+			'Implemented JWT and Spring Security for app security.',
+			'Optimized AWS infra (S3, CloudFront, ECS, ECR, Lambda) via Terraform.',
+			'Automated app deployment pipelines with GitHub Actions.',
+			'Created and maintained documentation for the app.',
+		],
+	},
+	{
+		title: 'Backend Developer Intern',
 		company: 'TrainingMug',
 		location: 'Hyderabad, Telangana, India',
 		startDate: 'December 2022',
@@ -45,16 +60,6 @@ const experiences: TExperience[] = [
 			'Hosted servers on AWS and DigitalOcean',
 		],
 	},
-	// {
-	// 	title: 'Mobile App Developer Intern',
-	// 	company: 'Elga Roma',
-	// 	location: 'Mumbai, Maharashtra, India',
-	// 	startDate: 'July 2023',
-	// 	endDate: 'Present',
-	// 	tasks: [
-	// 		'Nothing for now',
-	// 	],
-	// },
 ];
 
 export default experiences;
