@@ -6,6 +6,10 @@ import { AnimationOnScroll } from 'react-animation-on-scroll';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
+const NAME_REGEX = /^[a-zA-Z]{2,}(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
+const EMAIL_REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+const MESSAGE_BODY_REGEX = /^.{10,}$/;
+
 const Contact = () => {
 	const [form, setForm] = React.useState({
 		name: '',
@@ -21,15 +25,21 @@ const Contact = () => {
 	}, []);
 
 	const handleSubmit = React.useCallback(() => {
-		if (form.name === '') {
-			toast.error('Name is required!');
+		const data = {
+			name: form.name.trim(),
+			email: form.email.trim(),
+			message: form.message.trim(),
+		};
+
+		if (NAME_REGEX.test(data.name) === false) {
+			toast.error('Please enter a valid name!');
 			return;
 		}
-		if (form.email === '') {
-			toast.error('Email is required!');
+		if (EMAIL_REGEX.test(data.email) === false) {
+			toast.error('Please enter a valid email!');
 			return;
 		}
-		if (form.message === '') {
+		if (MESSAGE_BODY_REGEX.test(data.message) === false) {
 			toast.error('Sending empty message is sort of absurd!');
 			return;
 		}
@@ -38,7 +48,7 @@ const Contact = () => {
 			axios({
 				method: 'POST',
 				url: '/api/contact',
-				data: form,
+				data,
 			}),
 			{
 				pending: 'Sending...',
