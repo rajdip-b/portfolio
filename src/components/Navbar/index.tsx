@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import socials from '@/data/socials';
 import MenuRounded from '@mui/icons-material/MenuRounded';
 import DarkModeToggler from '@/components/Navbar/DarkModeToggler';
+import { Twitter } from '@mui/icons-material';
 
 type Props = {
 	onToggleMode: () => void;
@@ -78,6 +79,9 @@ const Navbar: React.FC<Props> = ({ onToggleMode }) => {
 						<a href={socials.linkedin}>
 							<LinkedIn />
 						</a>
+						<a href={socials.linkedin}>
+							<Twitter />
+						</a>
 						<a href={socials.github}>
 							<GitHub />
 						</a>
@@ -123,6 +127,9 @@ const Navbar: React.FC<Props> = ({ onToggleMode }) => {
 					<div className={'gap-x-4 flex'}>
 						<a href={socials.linkedin}>
 							<LinkedIn />
+						</a>
+						<a href={socials.linkedin}>
+							<Twitter />
 						</a>
 						<a href={socials.github}>
 							<GitHub />
