@@ -1,0 +1,13 @@
+[pr_description]
+publish_description_as_comment = true
+add_original_user_description = true
+use_description_markers = true
+
+[config]
+enable_custom_labels = true
+
+[custom_labels."Link Update"]
+description = "Whenever any link in the code is updated"
+
+[custom_labels."Code Update"]
+description = "Whenever any code is updated"
