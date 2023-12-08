@@ -79,7 +79,7 @@ const Navbar: React.FC<Props> = ({ onToggleMode }) => {
 						<a href={socials.linkedin}>
 							<LinkedIn />
 						</a>
-						<a href={socials.linkedin}>
+						<a href={socials.twitter}>
 							<Twitter />
 						</a>
 						<a href={socials.github}>
@@ -128,7 +128,7 @@ const Navbar: React.FC<Props> = ({ onToggleMode }) => {
 						<a href={socials.linkedin}>
 							<LinkedIn />
 						</a>
-						<a href={socials.linkedin}>
+						<a href={socials.twitter}>
 							<Twitter />
 						</a>
 						<a href={socials.github}>
