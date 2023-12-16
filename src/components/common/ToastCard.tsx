@@ -5,14 +5,13 @@ import 'react-toastify/dist/ReactToastify.css';
 type Props = {
 	darkMode: boolean;
 	children: React.ReactNode;
-}
+};
 
-const ToastCard: React.FC<Props> = (props) => {
-
+const ToastCard: React.FC<Props> = props => {
 	return (
 		<div>
 			<ToastContainer
-				position='top-center'
+				position="top-center"
 				autoClose={5000}
 				hideProgressBar={false}
 				newestOnTop={true}

@@ -9,8 +9,12 @@ const Experience = () => {
 		<Layout title={'My Experience'} id={'experience'}>
 			<div className={'flex flex-col mt-10 w-full mx-auto gap-y-16 md:gap-y-0'}>
 				{experiences.map((experience, index) => (
-					<AnimationOnScroll animateIn={'animate__fadeInUp'} delay={index * 200} animateOnce={true}
-									   key={index}>
+					<AnimationOnScroll
+						animateIn={'animate__fadeInUp'}
+						delay={index * 200}
+						animateOnce={true}
+						key={index}
+					>
 						<ExperienceItem key={index} experience={experience} />
 					</AnimationOnScroll>
 				))}

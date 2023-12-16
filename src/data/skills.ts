@@ -4,7 +4,8 @@ const skills: TSkillStack[] = [
 	{
 		logo: 'core.svg',
 		title: 'Core',
-		subtitle: 'The build of a house is only as strong as its foundation. These are the core skills that I have developed over the years.',
+		subtitle:
+			'The build of a house is only as strong as its foundation. These are the core skills that I have developed over the years.',
 		skills: [
 			{
 				name: 'Java',
@@ -47,7 +48,8 @@ const skills: TSkillStack[] = [
 	{
 		title: 'Frontend Development',
 		logo: 'frontend.svg',
-		subtitle: 'Fairly new to the frontend world, but I have been working on it for a while now. I am currently working on a few projects using Next JS and React Native. TailwindCSS is my go-to CSS framework.',
+		subtitle:
+			'Fairly new to the frontend world, but I have been working on it for a while now. I am currently working on a few projects using Next JS and React Native. TailwindCSS is my go-to CSS framework.',
 		skills: [
 			{
 				name: 'React JS',
@@ -78,7 +80,8 @@ const skills: TSkillStack[] = [
 	{
 		title: 'Backend Development',
 		logo: 'backend.svg',
-		subtitle: 'Backend development is my forte. I have been working on backend technologies for years now and I am very comfortable with my stack.',
+		subtitle:
+			'Backend development is my forte. I have been working on backend technologies for years now and I am very comfortable with my stack.',
 		skills: [
 			{
 				name: 'Node JS',
@@ -109,7 +112,8 @@ const skills: TSkillStack[] = [
 	{
 		title: 'Database',
 		logo: 'database.svg',
-		subtitle: 'Nothing is more important than data. Over the course of my career, I have worked with a variety of databases.',
+		subtitle:
+			'Nothing is more important than data. Over the course of my career, I have worked with a variety of databases.',
 		skills: [
 			{
 				name: 'MySQL',
@@ -175,7 +179,8 @@ const skills: TSkillStack[] = [
 	{
 		title: 'Project Management & SCM',
 		logo: 'scm.svg',
-		subtitle: 'Source code and project management is a crucial part of any project. These are the tools that I have used over the years.',
+		subtitle:
+			'Source code and project management is a crucial part of any project. These are the tools that I have used over the years.',
 		skills: [
 			{
 				name: 'GitHub',

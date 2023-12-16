@@ -6,12 +6,15 @@ import { AnimationOnScroll } from 'react-animation-on-scroll';
 
 type Props = {
 	project: TProject;
-}
+};
 
 const ProjectItem: React.FC<Props> = ({ project }) => {
 	return (
 		<div
-			className={'flex flex-col gap-y-2 w-full md:w-[90%] lg:w-[80%] text-dark-primary dark:text-white hover:bg-light-primary dark:hover:bg-dark-primary hover:drop-shadow-xl py-4 px-4 md:px-8 rounded-xl transition-all ease-out duration-300'}>
+			className={
+				'flex flex-col gap-y-2 w-full md:w-[90%] lg:w-[80%] text-dark-primary dark:text-white hover:bg-light-primary dark:hover:bg-dark-primary hover:drop-shadow-xl py-4 px-4 md:px-8 rounded-xl transition-all ease-out duration-300'
+			}
+		>
 			<div className={'flex items-center gap-x-5'}>
 				<AnimationOnScroll animateIn={'animate__fadeInUp'} animateOnce={true}>
 					<h2 className={'text-lg font-medium'}>{project.title}</h2>
@@ -25,8 +28,12 @@ const ProjectItem: React.FC<Props> = ({ project }) => {
 			</AnimationOnScroll>
 			<div className={'flex flex-wrap gap-3 mt-3'}>
 				{project.technologies.map((technology, index) => (
-					<AnimationOnScroll key={index} animateIn={'animate__fadeInUp'} delay={index * 200}
-									   animateOnce={true}>
+					<AnimationOnScroll
+						key={index}
+						animateIn={'animate__fadeInUp'}
+						delay={index * 200}
+						animateOnce={true}
+					>
 						<Technology technology={technology} />
 					</AnimationOnScroll>
 				))}

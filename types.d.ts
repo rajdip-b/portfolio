@@ -3,19 +3,19 @@ export type TSkillStack = {
 	title: string;
 	subtitle: string;
 	skills: TSkill[];
-}
+};
 
 export type TSkill = {
 	name: string;
 	logo: string;
-}
+};
 
 export type TProject = {
 	title: string;
 	description: string;
 	technologies: string[];
 	url: string;
-}
+};
 
 export type TExperience = {
 	title: string;
@@ -24,4 +24,4 @@ export type TExperience = {
 	tasks: string[];
 	startDate: string;
 	endDate: string;
-}
+};

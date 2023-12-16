@@ -32,6 +32,10 @@ const links = [
 		href: '#projects',
 	},
 	{
+		name: 'Open Source',
+		href: '#opensource',
+	},
+	{
 		name: 'Experience',
 		href: '#experience',
 	},

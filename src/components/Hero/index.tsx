@@ -14,20 +14,24 @@ const Hero = () => {
 	return (
 		<div
 			id={'home'}
-			className={'md:pt-[120px] h-screen w-screen px-5 md:px-10 lg:px-20 flex bg-light-primary dark:bg-dark-primary text-dark-primary dark:text-light-primary items-center md:gap-x-10 lg:gap-x-20 justify-between'}>
+			className={
+				'md:pt-[120px] h-screen w-screen px-5 md:px-10 lg:px-20 flex bg-light-primary dark:bg-dark-primary text-dark-primary dark:text-light-primary items-center md:gap-x-10 lg:gap-x-20 justify-between'
+			}
+		>
 			<div className={'md:w-3/4 lg:w-2/4 flex flex-col gap-y-8'}>
 				<AnimationOnScroll animateIn={'animate__fadeInLeft'} animateOnce animatePreScroll={false}>
-					<h1 className={'text-4xl md:text-5xl lg:text-6xl font-bold'}>Hey, I am <span
-						className={'text-yellow-light dark:yellow-light'}>Rajdip</span></h1>
+					<h1 className={'text-4xl md:text-5xl lg:text-6xl font-bold'}>
+						Hey, I am <span className={'text-yellow-light dark:yellow-light'}>Rajdip</span>
+					</h1>
 				</AnimationOnScroll>
 				<AnimationOnScroll animateIn={'animate__fadeInUp'} delay={800} animateOnce animatePreScroll={false}>
-					<h2 className={'text-xl md:text-2xl lg:text-3xl font-semibold'}>I am a Full-stack Developer based in
-						Kolkata,
-						India.</h2>
+					<h2 className={'text-xl md:text-2xl lg:text-3xl font-semibold'}>
+						I am a Full-stack Developer based in Kolkata, India.
+					</h2>
 				</AnimationOnScroll>
 				<AnimationOnScroll animateIn={'animate__fadeInUp'} delay={1600} animateOnce animatePreScroll={false}>
-					<h3 className={''}>Developer with over <span>2 years of experience</span> in
-						industry-level application development
+					<h3 className={''}>
+						Developer with over <span>2 years of experience</span> in industry-level application development
 						and an undying love towards football and black coffee.
 					</h3>
 				</AnimationOnScroll>

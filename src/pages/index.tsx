@@ -10,6 +10,7 @@ import Footer from '@/components/Footer';
 import React from 'react';
 import 'animate.css';
 import ToastCard from '@/components/common/ToastCard';
+import OpenSource from '@/components/OpenSource';
 
 const poppins = Poppins({
 	weight: ['300', '400', '500', '600', '700', '800', '900'],
@@ -31,6 +32,7 @@ export default function Home() {
 				<Hero />
 				<Skillset />
 				<Projects />
+				<OpenSource />
 				<Experience />
 				<Contact />
 				<Footer />

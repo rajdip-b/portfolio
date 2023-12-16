@@ -1,21 +1,22 @@
 import React from 'react';
 
 type Props = {
-	value?: string,
-	onChange?: (e: HTMLInputElement | HTMLTextAreaElement) => void,
-	placeholder?: string,
-	className?: string,
-	disabled?: boolean,
-	type?: string,
-	label?: string,
-	name?: string,
-}
+	value?: string;
+	onChange?: (e: HTMLInputElement | HTMLTextAreaElement) => void;
+	placeholder?: string;
+	className?: string;
+	disabled?: boolean;
+	type?: string;
+	label?: string;
+	name?: string;
+};
 
 const StyledInput: React.FC<Props> = props => {
 	return (
 		<div className={props.label && 'flex flex-col gap-1'}>
-			{props.label &&
-				<label className={'text-sm dark:text-light-primary text-dark-primary'}>{props.label}</label>}
+			{props.label && (
+				<label className={'text-sm dark:text-light-primary text-dark-primary'}>{props.label}</label>
+			)}
 			{props.type === 'textarea' ? (
 				<textarea
 					name={props.name}
