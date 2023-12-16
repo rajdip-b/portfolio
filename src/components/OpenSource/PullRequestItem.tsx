@@ -23,7 +23,7 @@ const PullRequestItem: React.FC<Props> = ({ pullRequest }) => {
 					alt={pullRequest.ownerDetails.name}
 					width={80}
 					height={80}
-					className="rounded-lg max-h-[80px] max-w-[80px]"
+					className="rounded-lg max-h-[50px] max-w-[50px] md:max-h-[80px] md:max-w-[80px]"
 				/>
 				<div className="flex flex-col flex-grow gap-y-1">
 					<Link href={pullRequest.ownerDetails.url}>
@@ -62,7 +62,7 @@ const PullRequestItem: React.FC<Props> = ({ pullRequest }) => {
 					>
 						<Image className={'w-[20px] h-[20px]'} src={require(`../../assets/images/link.svg`)} alt={''} />
 						<Link href={pullRequest.pullRequest.url}>
-							<h3 className={'text-sm font-medium text-gray-600 dark:text-gray-300'}>
+							<h3 className={'break-all text-sm font-medium text-gray-600 dark:text-gray-300'}>
 								{pullRequest.pullRequest.url.substring(8)}
 							</h3>
 						</Link>
