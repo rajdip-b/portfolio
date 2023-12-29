@@ -2,6 +2,13 @@ import { TProject } from '../../types';
 
 const projects: TProject[] = [
 	{
+		title: 'keyshade.xyz',
+		description:
+			'Manage all your secrets securely with public key encryption and realtime based tools, that seamlessly fits into your codebase ',
+		technologies: ['NextJS', 'NestJS', 'Supabase', 'TailwindCSS', 'Java', 'Rust', 'TypeScript', 'Docker'],
+		url: 'https://github.com/keyshade-xyz/keyshade',
+	},
+	{
 		title: 'URL Shortener',
 		description:
 			'This is a simple project made using ReactJS and SpringBoot to demonstrate the working of an URL shortener. The application takes an URL from the user and then generates a smaller URL by hashing it in the backend. The generated URL can be used to get to the original page. ',
