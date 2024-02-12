@@ -59,7 +59,10 @@ export default async function handler(_: NextApiRequest, res: NextApiResponse) {
         const owners = new Set<string>();
 
 		const pullResponse: PullRequest[] = pulls
-			.filter(pull => getOwnerFromIssueUrl(pull.url) !== username)
+			.filter(pull => {
+				const owner = getOwnerFromIssueUrl(pull.url);
+				return owner !== username && owner !== 'keyshade-xyz';
+			})
             .slice(0, 12)
 			.map(pull => {
                 owners.add(getOwnerFromIssueUrl(pull.url));
