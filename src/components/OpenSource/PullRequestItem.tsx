@@ -18,19 +18,23 @@ const PullRequestItem: React.FC<Props> = ({ pullRequest }) => {
 			}
 		>
 			<div className="flex gap-x-5">
-				<Image
-					src={pullRequest.ownerDetails.avatarUrl}
-					alt={pullRequest.ownerDetails.name}
-					width={80}
-					height={80}
-					className="rounded-lg max-h-[50px] max-w-[50px] md:max-h-[80px] md:max-w-[80px]"
-				/>
+				{pullRequest.ownerDetails && (
+					<Image
+						src={pullRequest.ownerDetails.avatarUrl}
+						alt={pullRequest.ownerDetails.name}
+						width={80}
+						height={80}
+						className="rounded-lg max-h-[50px] max-w-[50px] md:max-h-[80px] md:max-w-[80px]"
+					/>
+				)}
 				<div className="flex flex-col flex-grow gap-y-1">
-					<Link href={pullRequest.ownerDetails.url}>
-						<AnimationOnScroll animateIn={'animate__fadeInUp'} animateOnce={true}>
-							<h2 className={'text-xl font-medium'}>{pullRequest.owner}</h2>
-						</AnimationOnScroll>
-					</Link>
+					{pullRequest.ownerDetails && (
+						<Link href={pullRequest.ownerDetails.url}>
+							<AnimationOnScroll animateIn={'animate__fadeInUp'} animateOnce={true}>
+								<h2 className={'text-xl font-medium'}>{pullRequest.owner}</h2>
+							</AnimationOnScroll>
+						</Link>
+					)}
 					<AnimationOnScroll
 						className="flex gap-x-2 items-start"
 						animateIn={'animate__fadeInUp'}
