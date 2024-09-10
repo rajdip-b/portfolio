@@ -8,7 +8,7 @@ import axios from 'axios';
 
 const NAME_REGEX = /^[a-zA-Z]{2,}(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
 const EMAIL_REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-const MESSAGE_BODY_REGEX = /^.{10,}$/;
+const MESSAGE_BODY_REGEX = /^(.|\n|\r\n){10,}$/;
 
 const Contact = () => {
 	const [form, setForm] = React.useState({
