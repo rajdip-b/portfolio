@@ -32,6 +32,10 @@ const skills: TSkillStack[] = [
 				logo: 'typescript.svg',
 			},
 			{
+				name: 'PHP',
+				logo: 'php.svg',
+			},
+			{
 				name: 'C#',
 				logo: 'cs.svg',
 			},
@@ -90,6 +94,14 @@ const skills: TSkillStack[] = [
 			{
 				name: 'Express JS',
 				logo: 'express.svg',
+			},
+			{
+				name: 'Nest JS',
+				logo: 'nestjs.svg',
+			},
+			{
+				name: 'Laravel',
+				logo: 'laravel.svg',
 			},
 			{
 				name: 'Spring Boot',

@@ -48,7 +48,7 @@ const experiences: TExperience[] = [
 		company: 'TrainingMug',
 		location: 'Hyderabad, Telangana, India',
 		startDate: 'December 2022',
-		endDate: 'Present',
+		endDate: 'August 2024',
 		tasks: [
 			'Learned and worked on microservice architecture',
 			'Created 6 microservices using SpringBoot',
@@ -58,6 +58,17 @@ const experiences: TExperience[] = [
 			'Created Discord messaging integrations with Jenkins and GitLab',
 			'Documented API on Postman',
 			'Hosted servers on AWS and DigitalOcean',
+		],
+	},
+	{
+		title: 'Backend Developer',
+		company: 'Falsch-Parker.ch',
+		location: 'Zurich, Switzerland',
+		startDate: 'September 2024',
+		endDate: 'Present',
+		tasks: [
+			'Re-engineered the data layer for extensibility',
+			'Worked closely with documentation to introduce new features',
 		],
 	},
 ];
