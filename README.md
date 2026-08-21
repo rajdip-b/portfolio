@@ -1,46 +1,36 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped
-with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Rajdip Bhattacharya — Portfolio
 
-## Getting Started
+Personal portfolio site for [Rajdip Bhattacharya](https://github.com/rajdip-b). Built with Next.js (Pages Router), TypeScript, and Tailwind CSS.
 
-First, run the development server:
+## Getting started
 
 ```bash
+npm install
+cp .env.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Environment
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed
-on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited
-in `pages/api/contact.ts`.
+Copy `.env.example` to `.env.local` and fill in the values you need:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated
-as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+| Variable | Purpose |
+| --- | --- |
+| `MAIL_USERNAME` | Gmail address used by the contact form |
+| `MAIL_PASSWORD` | Gmail app password for that address |
+| `GITHUB_TOKEN` | Token used to load public pull requests |
+| `IGNORED_ORGANIZATIONS` | Comma-separated GitHub orgs to hide from Open Source |
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and
-load Inter, a custom Google Font.
+`NEXT_PUBLIC_MAIL_*` and `NEXT_PUBLIC_IGNORED_ORGANIZATIONS` are still accepted so existing deploys keep working.
 
-## Learn More
+## Scripts
 
-To learn more about Next.js, take a look at the following resources:
-
--   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
--   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions
-are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use
-the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
-from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+npm run dev          # start the development server
+npm run build        # production build
+npm run start        # serve the production build
+npm run lint         # Next.js ESLint
+npm run prettier:fix # format the repo
+```

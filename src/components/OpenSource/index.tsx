@@ -1,7 +1,6 @@
 import React from 'react';
 import Layout from '../common/Layout';
 import { OwnerDetails, PullRequest } from '../../pages/api/pull-requests';
-import axios from 'axios';
 import { AnimationOnScroll } from 'react-animation-on-scroll';
 import PullRequestItem from './PullRequestItem';
 import GitHub from '@mui/icons-material/GitHub';
@@ -10,27 +9,33 @@ type PR = PullRequest & { ownerDetails: OwnerDetails };
 
 const OpenSource: React.FC = () => {
 	const [prs, setPRs] = React.useState<PR[]>([]);
+	const [status, setStatus] = React.useState<'loading' | 'ready' | 'error'>('loading');
 
 	React.useEffect(() => {
-		axios
-			.get('/api/pull-requests')
-			.then(res => {
+		fetch('/api/pull-requests')
+			.then(async res => {
+				if (!res.ok) {
+					throw new Error('Failed to fetch pull requests');
+				}
+
 				const {
 					pullRequests,
 					owners,
 				}: {
 					pullRequests: PullRequest[];
 					owners: { [key: string]: OwnerDetails };
-				} = res.data;
-				const prsWithOwner = pullRequests.map((pr: PullRequest) => {
-					const ownerDetails = owners[pr.owner];
-					return { ...pr, ownerDetails };
-				});
-				console.log(prsWithOwner);
-				setPRs(prsWithOwner);
+				} = await res.json();
+
+				setPRs(
+					pullRequests.map((pr: PullRequest) => ({
+						...pr,
+						ownerDetails: owners[pr.owner],
+					})),
+				);
+				setStatus('ready');
 			})
-			.catch(err => {
-				console.log(err);
+			.catch(() => {
+				setStatus('error');
 			});
 	}, []);
 
@@ -41,7 +46,8 @@ const OpenSource: React.FC = () => {
 					'grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 mt-10 w-full mx-auto gap-x-5 lg:gap-x-16 gap-y-5'
 				}
 			>
-				{prs.length === 0 && <div>Loading...</div>}
+				{status === 'loading' && <div>Loading...</div>}
+				{status === 'error' && <div>Unable to load contributions right now.</div>}
 				{prs.map((pr, index) => (
 					<AnimationOnScroll
 						animateIn={'animate__fadeInUp'}

@@ -2,11 +2,18 @@ import { TProject } from '../../types';
 
 const projects: TProject[] = [
 	{
-		title: 'keyshade.xyz',
+		title: 'Website Summarizer',
 		description:
-			'Manage all your secrets securely with public key encryption and realtime based tools, that seamlessly fits into your codebase ',
-		technologies: ['NextJS', 'NestJS', 'Supabase', 'TailwindCSS', 'Java', 'Rust', 'TypeScript', 'Docker'],
-		url: 'https://github.com/keyshade-xyz/keyshade',
+			'Paste a webpage URL and get a structured brief — headline, overview, and key sections — streamed as the page is read.',
+		technologies: ['NextJS', 'TypeScript', 'OpenAI', 'TailwindCSS', 'Cheerio'],
+		url: 'https://summarize.rajdip.dev',
+	},
+	{
+		title: 'Keyshade',
+		description:
+			'Open-source secret management tool backed by public key encryption, built to fit securely into your codebase.',
+		technologies: ['NextJS', 'NestJS', 'Supabase', 'TailwindCSS', 'Prisma', 'Rust', 'TypeScript', 'Docker'],
+		url: 'https://keyshade.io',
 	},
 	{
 		title: 'URL Shortener',

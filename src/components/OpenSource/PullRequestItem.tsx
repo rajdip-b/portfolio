@@ -2,7 +2,6 @@ import { AnimationOnScroll } from 'react-animation-on-scroll';
 import { OwnerDetails, PullRequest } from '../../pages/api/pull-requests';
 import Image from 'next/image';
 import Link from 'next/link';
-import moment from 'moment';
 
 type PR = PullRequest & { ownerDetails: OwnerDetails };
 
@@ -75,7 +74,13 @@ const PullRequestItem: React.FC<Props> = ({ pullRequest }) => {
 			</div>
 			<AnimationOnScroll className="w-[25%]" animateIn={'animate__fadeInUp'} delay={300} animateOnce={true}>
 				<h3 className={'text-sm font-medium text-gray-600 dark:text-gray-300 text-right'}>
-					{moment(pullRequest.createdAt).format('MMM DD, YYYY')}
+					{pullRequest.createdAt
+						? new Date(pullRequest.createdAt).toLocaleDateString('en-US', {
+								month: 'short',
+								day: '2-digit',
+								year: 'numeric',
+							})
+						: ''}
 				</h3>
 			</AnimationOnScroll>
 		</div>

@@ -20,7 +20,19 @@ const poppins = Poppins({
 export default function Home() {
 	const [dark, setIsDark] = React.useState(false);
 
-	const toggleDarkMode = React.useCallback(() => setIsDark(prev => !prev), []);
+	React.useEffect(() => {
+		if (window.localStorage.getItem('theme') === 'dark') {
+			setIsDark(true);
+		}
+	}, []);
+
+	const toggleDarkMode = React.useCallback(() => {
+		setIsDark(prev => {
+			const next = !prev;
+			window.localStorage.setItem('theme', next ? 'dark' : 'light');
+			return next;
+		});
+	}, []);
 
 	return (
 		<ToastCard darkMode={dark}>

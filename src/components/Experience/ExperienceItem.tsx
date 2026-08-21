@@ -82,7 +82,7 @@ const ExperienceItem: React.FC<Props> = ({ experience }) => {
 					</AnimationOnScroll>
 					<AnimationOnScroll
 						animateOnce
-						animateIn={'animate_fadeInUp'}
+						animateIn={'animate__fadeInUp'}
 						delay={600}
 						className={'text-lg font-light'}
 					>
@@ -92,7 +92,7 @@ const ExperienceItem: React.FC<Props> = ({ experience }) => {
 				<div className={'flex flex-col gap-y-5'}>
 					<AnimationOnScroll
 						animateOnce
-						animateIn={'animate_fadeInUp'}
+						animateIn={'animate__fadeInUp'}
 						delay={800}
 						className={'text-lg font-semibold'}
 					>

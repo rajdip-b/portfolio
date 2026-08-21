@@ -1,12 +1,4 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import fetch from 'node-fetch';
-
-export interface Label {
-	id: number;
-	url: string;
-	name: string;
-	color: string;
-}
 
 export interface PullRequest {
 	id: number;
@@ -15,7 +7,7 @@ export interface PullRequest {
 	title: string;
 	pullRequest: {
 		url: string;
-		medgedAt: string;
+		mergedAt: string;
 	};
 	owner: string;
 	isOpen: boolean;
@@ -34,21 +26,29 @@ const getOwnerFromIssueUrl = (issueUrl: string): string => {
 	return url.pathname.split('/')[2];
 };
 
-const ignoreList = new Set(process.env.NEXT_PUBLIC_IGNORED_ORGANIZATIONS!.split(','));
+const ignoreList = new Set(
+	(process.env.IGNORED_ORGANIZATIONS || process.env.NEXT_PUBLIC_IGNORED_ORGANIZATIONS || '')
+		.split(',')
+		.map(org => org.trim())
+		.filter(Boolean),
+);
+
+const githubHeaders = (token: string) => ({
+	Authorization: `token ${token}`,
+	Accept: 'application/vnd.github+json',
+});
 
 export default async function handler(_: NextApiRequest, res: NextApiResponse) {
 	const githubToken = process.env.GITHUB_TOKEN;
 	if (!githubToken) {
-		return res.status(400).json({ error: 'GITHUB_TOKEN is not set in the environment variables' });
+		return res.status(500).json({ error: 'GITHUB_TOKEN is not set in the environment variables' });
 	}
 
 	try {
 		const pullsResponse = await fetch(
 			`https://api.github.com/search/issues?q=is:pr+author:rajdip-b&sort=created&order=desc&per_page=100`,
 			{
-				headers: {
-					Authorization: `token ${githubToken}`,
-				},
+				headers: githubHeaders(githubToken),
 			},
 		);
 
@@ -56,7 +56,7 @@ export default async function handler(_: NextApiRequest, res: NextApiResponse) {
 			throw new Error('Failed to fetch pull requests');
 		}
 
-		const pulls = ((await pullsResponse.json()) as any).items as any[];
+		const pulls = ((await pullsResponse.json()) as { items: any[] }).items;
 		const owners = new Set<string>();
 
 		const pullResponse: PullRequest[] = pulls
@@ -75,7 +75,7 @@ export default async function handler(_: NextApiRequest, res: NextApiResponse) {
 					title: pull.title,
 					pullRequest: {
 						url: pull.pull_request.html_url,
-						medgedAt: pull.pull_request.merged_at,
+						mergedAt: pull.pull_request.merged_at,
 					},
 					isOpen: pull.state === 'open' || pull.pull_request.merged_at === null,
 					createdAt: pull.created_at,
@@ -86,13 +86,11 @@ export default async function handler(_: NextApiRequest, res: NextApiResponse) {
 		for (const owner of owners) {
 			try {
 				const ownerDetailsResponse = await fetch(`https://api.github.com/users/${owner}`, {
-					headers: {
-						Authorization: `token ${githubToken}`,
-					},
+					headers: githubHeaders(githubToken),
 				});
 
 				if (!ownerDetailsResponse.ok) {
-					throw new Error('Failed to fetch owner details');
+					continue;
 				}
 
 				const ownerDetailsJson: any = await ownerDetailsResponse.json();
@@ -102,8 +100,8 @@ export default async function handler(_: NextApiRequest, res: NextApiResponse) {
 					name: ownerDetailsJson.login,
 					url: ownerDetailsJson.html_url,
 				};
-			} catch (error) {
-				console.log(error);
+			} catch {
+				// Skip owners that fail to resolve so the rest of the list still renders.
 			}
 		}
 
@@ -112,7 +110,6 @@ export default async function handler(_: NextApiRequest, res: NextApiResponse) {
 			owners: ownerDetails,
 		});
 	} catch (error) {
-		console.log(error);
-		res.status(500).json({ error });
+		res.status(500).json({ error: error instanceof Error ? error.message : 'Failed to fetch pull requests' });
 	}
 }

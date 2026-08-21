@@ -70,7 +70,7 @@ const Footer = () => {
 				>
 					<div>30/17, Shib Chandra Chatterjee Street, Belurmath, Howrah - 711202, India</div>
 					<div>
-						<div>agentR47@gmail.com</div>
+						<div>rajdipbhattacharya41@gmail.com</div>
 						<div>+91 70448 09651</div>
 					</div>
 				</div>

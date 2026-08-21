@@ -10,7 +10,7 @@ type Props = {
 const StyledButton: React.FC<Props> = props => {
 	return (
 		<button
-			onClick={props.onClick && props.onClick}
+			onClick={props.onClick}
 			className={`${props.className} ${
 				!props.filled
 					? ' text-yellow-light dark:text-yellow-dark hover:text-light-primary'

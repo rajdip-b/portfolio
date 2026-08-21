@@ -12,6 +12,10 @@ const skills: TSkillStack[] = [
 				logo: 'java.svg',
 			},
 			{
+				name: 'Golang',
+				logo: 'golang.svg',
+			},
+			{
 				name: 'C',
 				logo: 'c.svg',
 			},
@@ -50,34 +54,42 @@ const skills: TSkillStack[] = [
 		],
 	},
 	{
-		title: 'Frontend Development',
-		logo: 'frontend.svg',
+		title: 'AI Engineering',
+		logo: 'ai.svg',
 		subtitle:
-			'Fairly new to the frontend world, but I have been working on it for a while now. I am currently working on a few projects using Next JS and React Native. TailwindCSS is my go-to CSS framework.',
+			'I design and ship LLM systems — local models, retrieval, agents, and fine-tuning — that hold up in production.',
 		skills: [
 			{
-				name: 'React JS',
-				logo: 'react.svg',
+				name: 'Ollama',
+				logo: 'ollama.svg',
 			},
 			{
-				name: 'Next JS',
-				logo: 'next-js.png',
+				name: 'Hugging Face',
+				logo: 'huggingface.svg',
 			},
 			{
-				name: 'Vite JS',
-				logo: 'vitejs.svg',
+				name: 'RAG',
+				logo: 'rag.svg',
 			},
 			{
-				name: 'Tailwind CSS',
-				logo: 'tailwindcss.png',
+				name: 'Agentic AI',
+				logo: 'agentic.svg',
 			},
 			{
-				name: 'React Native',
-				logo: 'react-native.png',
+				name: 'Fine-tuning',
+				logo: 'finetuning.svg',
 			},
 			{
-				name: 'Redux',
-				logo: 'redux.svg',
+				name: 'LangChain',
+				logo: 'langchain.svg',
+			},
+			{
+				name: 'Prompt Engineering',
+				logo: 'prompt.svg',
+			},
+			{
+				name: 'LLMs',
+				logo: 'openai.svg',
 			},
 		],
 	},
@@ -213,6 +225,38 @@ const skills: TSkillStack[] = [
 			{
 				name: 'ClickUp',
 				logo: 'clickup.svg',
+			},
+		],
+	},
+	{
+		title: 'Frontend Development',
+		logo: 'frontend.svg',
+		subtitle:
+			'I build responsive web and mobile interfaces with React, Next.js, and React Native. TailwindCSS is my go-to CSS framework.',
+		skills: [
+			{
+				name: 'React JS',
+				logo: 'react.svg',
+			},
+			{
+				name: 'Next JS',
+				logo: 'next-js.png',
+			},
+			{
+				name: 'Vite JS',
+				logo: 'vitejs.svg',
+			},
+			{
+				name: 'Tailwind CSS',
+				logo: 'tailwindcss.png',
+			},
+			{
+				name: 'React Native',
+				logo: 'react-native.png',
+			},
+			{
+				name: 'Redux',
+				logo: 'redux.svg',
 			},
 		],
 	},

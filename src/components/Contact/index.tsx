@@ -4,7 +4,6 @@ import StyledButton from '@/components/common/StyledButton';
 import Layout from '@/components/common/Layout';
 import { AnimationOnScroll } from 'react-animation-on-scroll';
 import { toast } from 'react-toastify';
-import axios from 'axios';
 
 const NAME_REGEX = /^[a-zA-Z]{2,}(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
 const EMAIL_REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -45,10 +44,14 @@ const Contact = () => {
 		}
 
 		toast.promise(
-			axios({
+			fetch('/api/contact', {
 				method: 'POST',
-				url: '/api/contact',
-				data,
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(data),
+			}).then(res => {
+				if (!res.ok) {
+					throw new Error('Failed to send message');
+				}
 			}),
 			{
 				pending: 'Sending...',
@@ -77,7 +80,7 @@ const Contact = () => {
 						animateOnce
 						animateIn={'animate__fadeInUp'}
 						delay={600}
-						className={'text-xl md:text-2xl fonts-semibold text-gray-600 dark:text-gray-300'}
+						className={'text-xl md:text-2xl font-semibold text-gray-600 dark:text-gray-300'}
 					>
 						Feel you have a project that needs some professional touch? Or maybe you just want to have some
 						chat with me? Feel free to contact me! I&apos;m always open for new opportunities.
