@@ -2,6 +2,13 @@ import { TProject } from '../../types';
 
 const projects: TProject[] = [
 	{
+		title: 'Querio',
+		description:
+			'Add your resume, drop in a job link, and get application answers grounded in your real experience — with the source stories shown next to every draft.',
+		technologies: ['NextJS', 'TypeScript', 'MongoDB', 'Mongoose', 'OpenAI', 'TailwindCSS', 'Cheerio'],
+		url: 'https://querio.rajdip.dev',
+	},
+	{
 		title: 'Website Summarizer',
 		description:
 			'Paste a webpage URL and get a structured brief — headline, overview, and key sections — streamed as the page is read.',
@@ -39,38 +46,11 @@ const projects: TProject[] = [
 		url: 'https://github.com/rajdip-b/bookstore-microservice',
 	},
 	{
-		title: 'S3 Drive',
-		description:
-			'This project makes the use of an Amazon S3 bucket to mimic the functions of a storage device like GDrive or Dropbox. It exposes a simplistic menu-driven CLI which guides the users through the various functions of the application.',
-		technologies: ['Java', 'Amazon S3', 'AWS SDK', 'SpringBoot'],
-		url: 'https://github.com/rajdip-b/s3-drive',
-	},
-	{
-		title: 'Expense Tracker',
-		description:
-			'An app built using React Native, Typescript and Expo that helps you visualize your expenses in a nice and tidy manner',
-		technologies: ['React Native', 'TypeScript', 'Expo', 'TailwindCSS', 'Redux'],
-		url: 'https://github.com/rajdip-b/expense-tracker',
-	},
-	{
-		title: 'Bookstore',
-		description:
-			'An application built with ReactJS and SpringBoot that mimics the functionality of any E-Commerce website, just that you can only buy books. It exposes both admin and user sides of the application.',
-		technologies: ['ReactJS', 'ExpressJS', 'TailwindCSS', 'MongoDB', 'Mongoose', 'Redux', 'TypeScript', 'Docker'],
-		url: 'https://github.com/rajdip-b/bookstore',
-	},
-	{
 		title: 'Password Manager',
 		description:
 			'A browser-based online password manager that helps you store all your password locally on your browser.',
 		technologies: ['ReactJS', 'TailwindCSS', 'TypeScript', 'Redux', 'Vite'],
 		url: 'https://github.com/rajdip-b/password-manager',
-	},
-	{
-		title: 'Todo App',
-		description: 'A todo application built on the Ethereum blockchain',
-		technologies: ['Solidity', 'ReactJS', 'TypeScript', 'TailwindCSS', 'Ethers.js', 'Truffle'],
-		url: 'https://github.com/rajdip-b/todo-app-blockchain',
 	},
 	{
 		title: 'KodeIt',
