@@ -6,9 +6,126 @@ html,
 body {
 	margin: 0;
 	padding: 0;
+	background: #07090c;
+	color: #d7dde6;
 	overflow-x: hidden;
 }
 
 * {
 	scroll-behavior: smooth;
+}
+
+::selection {
+	background: rgba(62, 224, 162, 0.28);
+	color: #eef8f3;
+}
+
+:focus-visible {
+	outline: 1px dashed #3ee0a2;
+	outline-offset: 3px;
+}
+
+body::before {
+	content: '';
+	pointer-events: none;
+	position: fixed;
+	inset: 0;
+	z-index: 40;
+	background: repeating-linear-gradient(
+		to bottom,
+		transparent 0,
+		transparent 2px,
+		rgba(0, 0, 0, 0.12) 2px,
+		rgba(0, 0, 0, 0.12) 3px
+	);
+	opacity: 0.18;
+}
+
+body::after {
+	content: '';
+	pointer-events: none;
+	position: fixed;
+	inset: 0;
+	z-index: 41;
+	background: linear-gradient(rgba(18, 28, 24, 0.04) 50%, rgba(0, 0, 0, 0.05) 50%);
+	background-size: 100% 4px;
+	animation: scan 12s linear infinite;
+	opacity: 0.12;
+}
+
+.grid-bg {
+	background-image: linear-gradient(rgba(36, 48, 65, 0.45) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(36, 48, 65, 0.45) 1px, transparent 1px);
+	background-size: 28px 28px;
+	background-position: -1px -1px;
+}
+
+.cursor {
+	display: inline-block;
+	width: 0.55ch;
+	height: 1em;
+	margin-left: 2px;
+	background: #3ee0a2;
+	box-shadow: 0 0 8px rgba(62, 224, 162, 0.7);
+	animation: blink 1.05s step-end infinite;
+	vertical-align: text-bottom;
+}
+
+.photo-scan {
+	background: repeating-linear-gradient(
+		to bottom,
+		transparent 0,
+		transparent 2px,
+		rgba(7, 9, 12, 0.22) 2px,
+		rgba(7, 9, 12, 0.22) 3px
+	);
+}
+
+@keyframes blink {
+	50% {
+		opacity: 0;
+	}
+}
+
+@keyframes scan {
+	0% {
+		transform: translateY(-100%);
+	}
+	100% {
+		transform: translateY(100%);
+	}
+}
+
+@keyframes boot-in {
+	from {
+		opacity: 0;
+		transform: translateY(4px);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+.boot-line {
+	animation: boot-in 280ms ease both;
+}
+
+.Toastify__toast {
+	font-family: var(--font-mono), ui-monospace, monospace !important;
+	border-radius: 0 !important;
+	border: 1px solid #243041 !important;
+	background: #0e1218 !important;
+	color: #d7dde6 !important;
+	font-size: 13px !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation: none !important;
+		transition: none !important;
+		scroll-behavior: auto !important;
+	}
 }

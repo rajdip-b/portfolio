@@ -1,69 +1,96 @@
 import React from 'react';
 import Image from 'next/image';
-import StyledButton from '@/components/common/StyledButton';
-import ArrowForwardRounded from '@mui/icons-material/ArrowForwardRounded';
-import Link from 'next/link';
-import { AnimationOnScroll } from 'react-animation-on-scroll';
+import Window from '@/components/shell/Window';
+import Prompt from '@/components/shell/Prompt';
+import profile from '@/data/profile';
+import socials from '@/data/socials';
+import portrait from '../../assets/images/profile.jpg';
+
+const facts = [
+	['loc', profile.location],
+	['stack', profile.kernel],
+	['uptime', profile.uptime],
+	['focus', "evaluating Grok's code"],
+	['status', 'hireable'],
+];
 
 const Hero = () => {
-	React.useEffect(() => {
-		// Automatically scroll down by 1 px
-		window.scrollBy(0, 1);
-	}, []);
-
 	return (
-		<div
-			id={'home'}
-			className={
-				'md:pt-[120px] h-screen w-screen px-5 md:px-10 lg:px-20 flex bg-light-primary dark:bg-dark-primary text-dark-primary dark:text-light-primary items-center md:gap-x-10 lg:gap-x-20 justify-between'
-			}
-		>
-			<div className={'md:w-3/4 lg:w-2/4 flex flex-col gap-y-8'}>
-				<AnimationOnScroll animateIn={'animate__fadeInLeft'} animateOnce animatePreScroll={false}>
-					<h1 className={'text-4xl md:text-5xl lg:text-6xl font-bold'}>
-						Hey, I am <span className={'text-yellow-light dark:text-yellow-dark'}>Rajdip</span>
-					</h1>
-				</AnimationOnScroll>
-				<AnimationOnScroll animateIn={'animate__fadeInUp'} delay={800} animateOnce animatePreScroll={false}>
-					<h2 className={'text-xl md:text-2xl lg:text-3xl font-semibold'}>
-						I am a Full-stack Developer based in Kolkata, India.
-					</h2>
-				</AnimationOnScroll>
-				<AnimationOnScroll animateIn={'animate__fadeInUp'} delay={1600} animateOnce animatePreScroll={false}>
-					<h3 className={''}>
-						Developer with over <span>3 years of experience</span> in industry-level application development
-						and an undying love towards football and black coffee.
-					</h3>
-				</AnimationOnScroll>
-				<AnimationOnScroll animateIn={'animate__fadeIn'} delay={2000} animateOnce animatePreScroll={false}>
-					<Link scroll={false} href={'#contact'}>
-						<StyledButton className={'w-[200px]'} filled>
-							<div>
-								<span>Hire Me</span>
-								<ArrowForwardRounded />
+		<section id="home" className="grid-bg px-4 py-8 md:px-6 md:py-12">
+			<div className="mx-auto grid max-w-6xl items-stretch gap-5 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
+				<Window title="zsh — whoami.sh" aside={<span>tty1</span>} className="order-2 lg:order-1">
+					<div className="flex h-full flex-col justify-between gap-6 text-[13px] leading-6 md:text-sm">
+						<div>
+							<Prompt command="whoami" />
+							<div className="mt-3 border-l-2 border-accent/50 pl-4">
+								<h1 className="text-3xl font-medium tracking-tight text-fg md:text-5xl">
+									{profile.name}
+								</h1>
+								<p className="mt-2 text-cyan">
+									{profile.role} <span className="text-dim">@</span> {profile.company}
+								</p>
+								<p className="mt-3 max-w-xl text-muted">
+									Backend, cloud, and AI systems. {profile.uptime} shipping production software.
+								</p>
+								<p className="mt-2 text-comment"># {profile.tagline}</p>
 							</div>
-						</StyledButton>
-					</Link>
-				</AnimationOnScroll>
-				<AnimationOnScroll animateIn={'animate__shakeY'} delay={3000} animateOnce animatePreScroll={false}>
-					<Image
-						alt={'scroll'}
-						src={require('../../assets/images/scroll-down-white.svg')}
-						className={'translate-y-20 hidden dark:md:block dark:visible'}
-					/>
-					<Image
-						alt={'scroll'}
-						src={require('../../assets/images/scroll-down-black.svg')}
-						className={'translate-y-20 hidden md:block dark:hidden'}
-					/>
-				</AnimationOnScroll>
+						</div>
+
+						<div>
+							<Prompt command="cat ~/.profile" />
+							<dl className="mt-3 grid max-w-md grid-cols-[5.5rem_1fr] gap-x-3 gap-y-1.5">
+								{facts.map(([key, value]) => (
+									<React.Fragment key={key}>
+										<dt className="text-comment">{key}</dt>
+										<dd className="text-fg">{value}</dd>
+									</React.Fragment>
+								))}
+							</dl>
+						</div>
+
+						<div className="flex flex-wrap gap-2">
+							<a
+								href="#contact"
+								className="border border-accent bg-accent px-3 py-2 text-xs text-bg hover:bg-transparent hover:text-accent"
+							>
+								./hire_me
+							</a>
+							<a
+								href="#projects"
+								className="border border-line px-3 py-2 text-xs text-muted hover:border-accent hover:text-accent"
+							>
+								ls projects
+							</a>
+							<a
+								href={socials.github}
+								target="_blank"
+								rel="noreferrer"
+								className="border border-line px-3 py-2 text-xs text-muted hover:border-accent hover:text-accent"
+							>
+								open github
+							</a>
+						</div>
+					</div>
+				</Window>
+
+				<Window
+					title="preview — profile.jpg"
+					aside={<span>jpeg</span>}
+					bodyClassName="p-0"
+					className="order-1 lg:order-2"
+				>
+					<div className="relative overflow-hidden">
+						<Image
+							src={portrait}
+							alt="Rajdip Bhattacharya"
+							priority
+							className="h-auto w-full"
+						/>
+						<div className="photo-scan pointer-events-none absolute inset-0 mix-blend-multiply" />
+					</div>
+				</Window>
 			</div>
-			<div className={'w-1/4 md:block hidden'}>
-				<AnimationOnScroll animateIn={'animate__fadeInRight'} animateOnce animatePreScroll={false}>
-					<Image className={'min-w-[200px]'} alt={'hero'} src={require('../../assets/images/hero.svg')} />
-				</AnimationOnScroll>
-			</div>
-		</div>
+		</section>
 	);
 };
 

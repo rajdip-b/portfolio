@@ -2,20 +2,18 @@ import React from 'react';
 import projects from '@/data/projects';
 import ProjectItem from '@/components/Projects/ProjectItem';
 import Layout from '@/components/common/Layout';
-import { AnimationOnScroll } from 'react-animation-on-scroll';
 
 const Projects = () => {
 	return (
-		<Layout title={'My Projects'} id={'projects'}>
-			<div className={'grid grid-cols-1 md:grid-cols-2 gap-x-5 lg:gap-x-16 gap-y-5 mt-10 w-full'}>
+		<Layout title="Projects" id="projects" command="ls -la ~/projects">
+			<div className="flex flex-col border border-line bg-panel">
+				<div className="grid grid-cols-[auto_1fr] gap-x-4 border-b border-line px-4 py-2 text-[11px] uppercase tracking-[0.14em] text-dim md:grid-cols-[88px_1fr_auto]">
+					<span>mode</span>
+					<span>name</span>
+					<span className="hidden md:inline">stack</span>
+				</div>
 				{projects.map((project, index) => (
-					<AnimationOnScroll
-						animateIn={index % 2 === 0 ? 'animate__fadeInLeft' : 'animate__fadeInRight'}
-						animateOnce={true}
-						key={index}
-					>
-						<ProjectItem key={index} project={project} />
-					</AnimationOnScroll>
+					<ProjectItem key={project.title} project={project} index={index} />
 				))}
 			</div>
 		</Layout>

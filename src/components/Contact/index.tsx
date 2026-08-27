@@ -1,8 +1,6 @@
 import React from 'react';
-import StyledInput from '@/components/common/StyledInput';
-import StyledButton from '@/components/common/StyledButton';
 import Layout from '@/components/common/Layout';
-import { AnimationOnScroll } from 'react-animation-on-scroll';
+import profile from '@/data/profile';
 import { toast } from 'react-toastify';
 
 const NAME_REGEX = /^[a-zA-Z]{2,}(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
@@ -16,113 +14,120 @@ const Contact = () => {
 		message: '',
 	});
 
-	const handleChange = React.useCallback((e: HTMLInputElement | HTMLTextAreaElement) => {
+	const handleChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+		const { name, value } = event.target;
 		setForm(prev => ({
 			...prev,
-			[e.name]: e.value,
+			[name]: value,
 		}));
 	}, []);
 
-	const handleSubmit = React.useCallback(() => {
-		const data = {
-			name: form.name.trim(),
-			email: form.email.trim(),
-			message: form.message.trim(),
-		};
+	const handleSubmit = React.useCallback(
+		(event: React.FormEvent) => {
+			event.preventDefault();
+			const data = {
+				name: form.name.trim(),
+				email: form.email.trim(),
+				message: form.message.trim(),
+			};
 
-		if (NAME_REGEX.test(data.name) === false) {
-			toast.error('Please enter a valid name!');
-			return;
-		}
-		if (EMAIL_REGEX.test(data.email) === false) {
-			toast.error('Please enter a valid email!');
-			return;
-		}
-		if (MESSAGE_BODY_REGEX.test(data.message) === false) {
-			toast.error('Sending empty message is sort of absurd!');
-			return;
-		}
+			if (NAME_REGEX.test(data.name) === false) {
+				toast.error('invalid --from: enter a real name');
+				return;
+			}
+			if (EMAIL_REGEX.test(data.email) === false) {
+				toast.error('invalid --reply-to: enter a valid email');
+				return;
+			}
+			if (MESSAGE_BODY_REGEX.test(data.message) === false) {
+				toast.error('refusing to send an empty stdin');
+				return;
+			}
 
-		toast.promise(
-			fetch('/api/contact', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify(data),
-			}).then(res => {
-				if (!res.ok) {
-					throw new Error('Failed to send message');
-				}
-			}),
-			{
-				pending: 'Sending...',
-				success: 'Message sent!',
-				error: 'Failed to send message!',
-			},
-		);
-	}, [form]);
+			toast.promise(
+				fetch('/api/contact', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify(data),
+				}).then(res => {
+					if (!res.ok) {
+						throw new Error('Failed to send message');
+					}
+				}),
+				{
+					pending: 'sending mail...',
+					success: 'exit 0 — message sent',
+					error: 'exit 1 — failed to send',
+				},
+			);
+		},
+		[form],
+	);
+
+	const field =
+		'w-full border-0 border-b border-line bg-transparent px-0 py-2 text-fg outline-none placeholder:text-dim focus:border-accent';
 
 	return (
-		<Layout className={'h-fit'} title={'Hire Me!'} id={'contact'}>
-			<div
-				className={
-					'flex flex-col md:flex-row items-center h-full justify-center gap-x-20 gap-y-16 mt-[100px] w-full mx-auto'
-				}
-			>
-				<div className={'w-full md:w-1/2 flex flex-col gap-y-10 items-start'}>
-					<AnimationOnScroll
-						animateOnce
-						animateIn={'animate__fadeInLeft'}
-						className={'font-bold text-6xl md:text-7xl text-primary'}
-					>
-						Let&apos;s Talk
-					</AnimationOnScroll>
-					<AnimationOnScroll
-						animateOnce
-						animateIn={'animate__fadeInUp'}
-						delay={600}
-						className={'text-xl md:text-2xl font-semibold text-gray-600 dark:text-gray-300'}
-					>
-						Feel you have a project that needs some professional touch? Or maybe you just want to have some
-						chat with me? Feel free to contact me! I&apos;m always open for new opportunities.
-					</AnimationOnScroll>
+		<Layout title="Contact" id="contact" command={`mail -s "hello" ${profile.email}`}>
+			<div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+				<div>
+					<p className="text-sm text-muted">
+						got a project, a weird idea, or just want to talk systems? drop a message. i read everything that
+						isn&apos;t spam.
+					</p>
+					<div className="mt-6 space-y-1 text-sm">
+						<p>
+							<span className="text-comment">to:</span> {profile.email}
+						</p>
+						<p>
+							<span className="text-comment">loc:</span> {profile.location}
+						</p>
+					</div>
 				</div>
-				<div className={'w-full md:w-1/2 flex flex-col gap-5'}>
-					<AnimationOnScroll animateOnce animateIn={'animate__fadeIn'} delay={700}>
-						<StyledInput
-							type={'text'}
-							label={'Name'}
-							name={'name'}
+				<form onSubmit={handleSubmit} className="border border-line bg-panel p-4 md:p-5">
+					<p className="mb-4 text-[12px] text-dim">
+						# compose a message · enter to send
+					</p>
+					<label className="mb-4 block text-[12px] text-comment">
+						--from
+						<input
+							type="text"
+							name="name"
 							value={form.name}
 							onChange={handleChange}
-							placeholder={'John Doe'}
+							placeholder="your name"
+							className={`mt-1 ${field}`}
 						/>
-					</AnimationOnScroll>
-					<AnimationOnScroll animateOnce animateIn={'animate__fadeIn'} delay={1000}>
-						<StyledInput
-							type={'text'}
-							label={'Email'}
-							name={'email'}
+					</label>
+					<label className="mb-4 block text-[12px] text-comment">
+						--reply-to
+						<input
+							type="email"
+							name="email"
 							value={form.email}
 							onChange={handleChange}
-							placeholder={'johndoe@somecompany.com'}
+							placeholder="you@company.com"
+							className={`mt-1 ${field}`}
 						/>
-					</AnimationOnScroll>
-					<AnimationOnScroll animateOnce animateIn={'animate__fadeIn'} delay={1300}>
-						<StyledInput
-							type={'textarea'}
-							label={'Message'}
-							name={'message'}
+					</label>
+					<label className="mb-5 block text-[12px] text-comment">
+						stdin
+						<textarea
+							name="message"
+							rows={6}
 							value={form.message}
 							onChange={handleChange}
-							placeholder={'Hello, I would like to hire you for a project...'}
+							placeholder="hello, i would like to..."
+							className={`mt-1 resize-y ${field}`}
 						/>
-					</AnimationOnScroll>
-					<AnimationOnScroll animateOnce animateIn={'animate__fadeIn'} delay={1500}>
-						<StyledButton onClick={handleSubmit} className={'mt-5 rounded-full w-full'} filled>
-							Contact Me
-						</StyledButton>
-					</AnimationOnScroll>
-				</div>
+					</label>
+					<button
+						type="submit"
+						className="border border-accent bg-accent px-4 py-2 text-sm text-bg hover:bg-transparent hover:text-accent"
+					>
+						^D send
+					</button>
+				</form>
 			</div>
 		</Layout>
 	);

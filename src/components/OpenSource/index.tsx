@@ -1,9 +1,8 @@
 import React from 'react';
 import Layout from '../common/Layout';
 import { OwnerDetails, PullRequest } from '../../pages/api/pull-requests';
-import { AnimationOnScroll } from 'react-animation-on-scroll';
 import PullRequestItem from './PullRequestItem';
-import GitHub from '@mui/icons-material/GitHub';
+import socials from '@/data/socials';
 
 type PR = PullRequest & { ownerDetails: OwnerDetails };
 
@@ -40,37 +39,33 @@ const OpenSource: React.FC = () => {
 	}, []);
 
 	return (
-		<Layout className="h-fit" title={'My Open Source Contributions'} id={'opensource'}>
-			<div
-				className={
-					'grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 mt-10 w-full mx-auto gap-x-5 lg:gap-x-16 gap-y-5'
-				}
-			>
-				{status === 'loading' && <div>Loading...</div>}
-				{status === 'error' && <div>Unable to load contributions right now.</div>}
-				{prs.map((pr, index) => (
-					<AnimationOnScroll
-						animateIn={'animate__fadeInUp'}
-						delay={index * 200}
-						animateOnce={true}
-						key={index}
-					>
-						<PullRequestItem key={index} pullRequest={pr} />
-					</AnimationOnScroll>
+		<Layout title="Open Source" id="opensource" command="gh pr list --author rajdip-b --limit 12">
+			<div className="border border-line bg-panel">
+				<div className="grid grid-cols-[72px_1fr_auto] gap-3 border-b border-line px-4 py-2 text-[11px] uppercase tracking-[0.14em] text-dim">
+					<span>state</span>
+					<span>title</span>
+					<span className="hidden sm:inline">date</span>
+				</div>
+				{status === 'loading' && (
+					<p className="px-4 py-6 text-sm text-muted">
+						<span className="text-amber">…</span> fetching pull requests
+					</p>
+				)}
+				{status === 'error' && (
+					<p className="px-4 py-6 text-sm text-rose">error: unable to load contributions right now</p>
+				)}
+				{prs.map(pr => (
+					<PullRequestItem key={pr.id} pullRequest={pr} />
 				))}
 			</div>
-			<div className="mx-auto mt-5 w-full items-center flex">
-				<a
-					className={
-						'p-2 w-[300px] mx-auto text-center rounded-full border dark:border-gray-300 border-gray-600'
-					}
-					href={'https://github.com/rajdip-b'}
-					rel="noopener"
-				>
-					<GitHub />
-					<span>See all on GitHub</span>
-				</a>
-			</div>
+			<a
+				href={socials.github}
+				target="_blank"
+				rel="noopener noreferrer"
+				className="mt-4 inline-block border border-line px-3 py-2 text-[12px] text-muted hover:border-accent hover:text-accent"
+			>
+				$ open {socials.github.replace('https://', '')}
+			</a>
 		</Layout>
 	);
 };

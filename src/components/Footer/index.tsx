@@ -1,84 +1,41 @@
 import React from 'react';
-import localFont from 'next/font/local';
-import LinkedIn from '@mui/icons-material/LinkedIn';
-import GitHub from '@mui/icons-material/GitHub';
-import Facebook from '@mui/icons-material/Facebook';
 import socials from '@/data/socials';
-import { AnimationOnScroll } from 'react-animation-on-scroll';
-import { Twitter } from '@mui/icons-material';
+import profile from '@/data/profile';
 
-const orionPrime = localFont({
-	src: '../../assets/fonts/Orionprimedemo.ttf',
-});
+const links = [
+	{ label: 'github', href: socials.github },
+	{ label: 'linkedin', href: socials.linkedin },
+	{ label: 'x', href: socials.twitter },
+	{ label: 'blog', href: socials.blog },
+];
 
 const Footer = () => {
 	return (
-		<AnimationOnScroll
-			animateIn={'animate__fadeIn'}
-			animateOnce={true}
-			className={
-				'w-screen py-16 bg-light-secondary dark:bg-dark-secondary text-dark-primary dark:text-light-primary'
-			}
-		>
-			<div className={'flex items-center gap-x-3 px-5 md:px-10 lg:px-20'}>
-				<span className={`${orionPrime.className} text-3xl`}>R.B</span>
-				<div className={'flex flex-col dark:text-gray-400 text-gray-600'}>
-					<div className={'text-sm'}>Full-stack, DevOps and</div>
-					<div className={'text-sm'}>Cloud Engineer</div>
+		<footer className="border-t border-line px-4 pb-28 pt-10 md:px-6">
+			<div className="mx-auto flex max-w-6xl flex-col gap-6 text-[13px] text-muted md:flex-row md:justify-between">
+				<div>
+					<p className="text-fg">
+						{profile.handle}
+						<span className="text-dim">@</span>
+						{profile.host}
+					</p>
+					<p className="mt-2 max-w-sm text-comment">
+						# {profile.name} · {profile.role.toLowerCase()} · {profile.origin} → {profile.location}
+					</p>
+				</div>
+				<div className="flex flex-col gap-2">
+					{links.map(link => (
+						<a key={link.label} href={link.href} target="_blank" rel="noreferrer" className="hover:text-accent">
+							<span className="text-dim">↗ </span>
+							{link.label}
+						</a>
+					))}
 				</div>
 			</div>
-			<div
-				className={
-					'border-y-2 dark:border-y-gray-300 border-y-gray-400 w-screen px-5 md:px-10 lg:px-20 py-10 flex md:flex-row flex-col gap-y-10 justify-between mt-5'
-				}
-			>
-				<div className={'flex flex-col gap-y-5 md:w-1/5'}>
-					<div className={'dark:text-gray-400 text-gray-600 text-sm'}>
-						Rajdip Bhattacharya is Full Stack developer, Cloud and DevOps engineer based in Kolkata, India.
-					</div>
-					<div className={'flex gap-x-4'}>
-						<a
-							className={'p-2 rounded-full border dark:border-gray-300 border-gray-600'}
-							href={socials.linkedin}
-						>
-							<LinkedIn />
-						</a>
-						<a
-							className={'p-2 rounded-full border dark:border-gray-300 border-gray-600'}
-							href={socials.twitter}
-						>
-							<Twitter />
-						</a>
-						<a
-							className={'p-2 rounded-full border dark:border-gray-300 border-gray-600'}
-							href={socials.github}
-						>
-							<GitHub />
-						</a>
-						<a
-							className={'p-2 rounded-full border dark:border-gray-300 border-gray-600'}
-							href={socials.facebook}
-						>
-							<Facebook />
-						</a>
-					</div>
-				</div>
-				<div
-					className={
-						'flex flex-col justify-between gap-y-5 dark:text-gray-400 text-gray-600 text-sm md:w-1/5'
-					}
-				>
-					<div>30/17, Shib Chandra Chatterjee Street, Belurmath, Howrah - 711202, India</div>
-					<div>
-						<div>rajdipbhattacharya41@gmail.com</div>
-						<div>+91 70448 09651</div>
-					</div>
-				</div>
-			</div>
-			<div className={'dark:text-gray-400 text-gray-600 text-center mt-5'}>
-				Made with <span className={'text-red-500 text-lg'}>&#9829;</span> by Rajdip
-			</div>
-		</AnimationOnScroll>
+			<p className="mx-auto mt-8 max-w-6xl text-[12px] text-dim">
+				exit 0 · built by {profile.shortName.toLowerCase()} · no trackers
+			</p>
+		</footer>
 	);
 };
 

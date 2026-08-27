@@ -4,17 +4,21 @@ export default function Document() {
 	return (
 		<Html lang="en">
 			<Head>
-				<meta charSet="UTF-8" />
-				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 				<meta
 					name="description"
-					content="Portfolio of Rajdip Bhattacharya — full-stack, cloud, and DevOps engineer."
+					content="Rajdip Bhattacharya — software engineering specialist at xAI. Backend, cloud, and AI systems."
 				/>
 				<meta
 					name="keywords"
 					content="Portfolio, Rajdip Bhattacharya, NextJS, JavaScript, TypeScript, ReactJS"
 				/>
 				<meta name="author" content="Rajdip Bhattacharya" />
+				<link rel="preconnect" href="https://fonts.googleapis.com" />
+				<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+				<link
+					href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+					rel="stylesheet"
+				/>
 			</Head>
 			<body>
 				<Main />

@@ -1,150 +1,101 @@
 import React from 'react';
-import localFont from 'next/font/local';
-import Link from 'next/link';
-import LinkedIn from '@mui/icons-material/LinkedIn';
-import Facebook from '@mui/icons-material/Facebook';
-import GitHub from '@mui/icons-material/GitHub';
-import { useRouter } from 'next/router';
 import socials from '@/data/socials';
-import MenuRounded from '@mui/icons-material/MenuRounded';
-import DarkModeToggler from '@/components/Navbar/DarkModeToggler';
-import { Twitter } from '@mui/icons-material';
-
-type Props = {
-	onToggleMode: () => void;
-};
+import profile from '@/data/profile';
+import useClock from '../../hooks/useClock';
 
 const links = [
-	{
-		name: 'Home',
-		href: '#home',
-	},
-	{
-		name: 'Blog',
-		href: socials.blog,
-	},
-	{
-		name: 'Skills',
-		href: '#skills',
-	},
-	{
-		name: 'Projects',
-		href: '#projects',
-	},
-	{
-		name: 'Open Source',
-		href: '#opensource',
-	},
-	{
-		name: 'Experience',
-		href: '#experience',
-	},
-	{
-		name: 'Contact',
-		href: '#contact',
-	},
+	{ name: 'whoami', href: '#home' },
+	{ name: 'skills', href: '#skills' },
+	{ name: 'projects', href: '#projects' },
+	{ name: 'oss', href: '#opensource' },
+	{ name: 'exp', href: '#experience' },
+	{ name: 'mail', href: '#contact' },
+	{ name: 'blog', href: socials.blog, external: true },
 ];
 
-const orionPrime = localFont({
-	src: '../../assets/fonts/Orionprimedemo.ttf',
-});
-
-const Navbar: React.FC<Props> = ({ onToggleMode }) => {
-	const router = useRouter();
-	const [expanded, setExpanded] = React.useState(false);
+const Navbar = () => {
+	const clock = useClock();
+	const [open, setOpen] = React.useState(false);
 
 	return (
-		<>
-			<div
-				className={
-					'w-screen px-5 md:px-10 lg:px-20 absolute bg-light-primary dark:bg-dark-primary py-10 justify-between text-dark-primary dark:text-light-primary md:flex hidden'
-				}
-			>
-				<span className={`${orionPrime.className}`}>R.B</span>
-				<div className={'flex gap-x-8'}>
-					{links.map((link, index) => (
-						<Link
-							scroll={false}
-							className={`${
-								router.asPath.split('/')[1] === link.href
-									? 'text-primary'
-									: 'text-dark-primary dark:text-light-primary'
-							} transition-all ease-out duration-300`}
-							href={link.href}
-							key={index}
-						>
-							{link.name}
-						</Link>
-					))}
+		<header className="sticky top-0 z-30 border-b border-line bg-bg/90 backdrop-blur">
+			<div className="flex items-center justify-between gap-4 px-4 py-2 text-[12px] md:px-6">
+				<div className="flex min-w-0 items-center gap-3 text-muted">
+					<span className="shrink-0 text-accent">{profile.handle}@{profile.host}</span>
+					<span className="hidden text-dim sm:inline">~/portfolio</span>
+					<span className="hidden text-amber sm:inline">main*</span>
 				</div>
-				<div className={'flex flex-row gap-x-5 items-center'}>
-					<DarkModeToggler onToggleMode={onToggleMode} />
-					<div className={'flex gap-x-4'}>
-						<a href={socials.linkedin}>
-							<LinkedIn />
-						</a>
-						<a href={socials.twitter}>
-							<Twitter />
-						</a>
-						<a href={socials.github}>
-							<GitHub />
-						</a>
-						<a href={socials.facebook}>
-							<Facebook />
-						</a>
-					</div>
-				</div>
-			</div>
-			<div
-				className={`z-10 flex md:hidden flex-col absolute text-dark-primary dark:text-light-primary w-screen ${
-					expanded
-						? 'h-[380px] drop-shadow-xl bg-light-secondary dark:bg-dark-secondary'
-						: 'h-[100px] bg-light-primary dark:bg-dark-primary'
-				} overflow-hidden transition-all ease-in-out duration-300`}
-			>
-				<div className={'px-5 py-10 flex justify-between items-center'}>
-					<span className={`${orionPrime.className}`}>R.B</span>
-					<div className={'flex gap-x-5'}>
-						<DarkModeToggler onToggleMode={onToggleMode} />
-						<button onClick={() => setExpanded(prev => !prev)}>
-							<MenuRounded />
-						</button>
-					</div>
-				</div>
-				<div className={'flex flex-col gap-y-5 items-center'}>
-					<div className={'flex flex-col gap-y-2 text-center'}>
-						{links.map((link, index) => (
-							<Link
-								scroll={false}
-								className={`${
-									router.asPath.split('/')[1] === link.href
-										? 'text-yellow-light dark:text-yellow-dark'
-										: 'text-dark-primary dark:text-light-primary'
-								} transition-all ease-out duration-300`}
+
+				<nav className="hidden items-center gap-1 lg:flex">
+					{links.map(link =>
+						link.external ? (
+							<a
+								key={link.name}
 								href={link.href}
-								key={index}
+								target="_blank"
+								rel="noreferrer"
+								className="px-2 py-1 text-muted hover:bg-raised hover:text-accent"
 							>
+								<span className="text-dim">./</span>
 								{link.name}
-							</Link>
-						))}
-					</div>
-					<div className={'gap-x-4 flex'}>
-						<a href={socials.linkedin}>
-							<LinkedIn />
-						</a>
-						<a href={socials.twitter}>
-							<Twitter />
-						</a>
-						<a href={socials.github}>
-							<GitHub />
-						</a>
-						<a href={socials.facebook}>
-							<Facebook />
-						</a>
-					</div>
+							</a>
+						) : (
+							<a
+								key={link.name}
+								href={link.href}
+								className="px-2 py-1 text-muted hover:bg-raised hover:text-accent"
+							>
+								<span className="text-dim">./</span>
+								{link.name}
+							</a>
+						),
+					)}
+				</nav>
+
+				<div className="flex items-center gap-3 text-dim">
+					<span className="hidden sm:inline">{clock}</span>
+					<span className="hidden text-accent sm:inline">online</span>
+					<button
+						className="border border-accent px-2 py-1 text-accent lg:hidden"
+						onClick={() => setOpen(prev => !prev)}
+						aria-expanded={open}
+						aria-label="Toggle navigation"
+					>
+						{open ? 'close' : 'ls'}
+					</button>
 				</div>
 			</div>
-		</>
+
+			{open && (
+				<nav className="flex flex-col border-t border-line bg-panel px-4 py-3 lg:hidden">
+					{links.map(link =>
+						link.external ? (
+							<a
+								key={link.name}
+								href={link.href}
+								target="_blank"
+								rel="noreferrer"
+								className="py-2 text-sm text-muted hover:text-accent"
+								onClick={() => setOpen(false)}
+							>
+								<span className="text-dim">$ cd </span>
+								{link.name}
+							</a>
+						) : (
+							<a
+								key={link.name}
+								href={link.href}
+								className="py-2 text-sm text-muted hover:text-accent"
+								onClick={() => setOpen(false)}
+							>
+								<span className="text-dim">$ cd </span>
+								{link.name}
+							</a>
+						),
+					)}
+				</nav>
+			)}
+		</header>
 	);
 };
 

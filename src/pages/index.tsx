@@ -1,4 +1,3 @@
-import { Poppins } from 'next/font/google';
 import Hero from '@/components/Hero';
 import Navbar from '@/components/Navbar';
 import Skillset from '@/components/Skillset';
@@ -8,47 +7,30 @@ import Contact from '@/components/Contact';
 import Head from 'next/head';
 import Footer from '@/components/Footer';
 import React from 'react';
-import 'animate.css';
 import ToastCard from '@/components/common/ToastCard';
 import OpenSource from '@/components/OpenSource';
-
-const poppins = Poppins({
-	weight: ['300', '400', '500', '600', '700', '800', '900'],
-	subsets: ['latin-ext', 'latin'],
-});
+import CommandBar from '@/components/shell/CommandBar';
+import profile from '@/data/profile';
 
 export default function Home() {
-	const [dark, setIsDark] = React.useState(false);
-
-	React.useEffect(() => {
-		if (window.localStorage.getItem('theme') === 'dark') {
-			setIsDark(true);
-		}
-	}, []);
-
-	const toggleDarkMode = React.useCallback(() => {
-		setIsDark(prev => {
-			const next = !prev;
-			window.localStorage.setItem('theme', next ? 'dark' : 'light');
-			return next;
-		});
-	}, []);
-
 	return (
-		<ToastCard darkMode={dark}>
+		<ToastCard>
 			<Head>
-				<title>Rajdip Bhattacharya</title>
+				<title>{`${profile.name} — ${profile.role}`}</title>
 			</Head>
-			<main className={`min-h-screen bg-dark-secondary w-screen ${poppins.className} ${dark && 'dark'}`}>
-				<Navbar onToggleMode={toggleDarkMode} />
-				<Hero />
-				<Skillset />
-				<Projects />
-				<OpenSource />
-				<Experience />
-				<Contact />
+			<div className="min-h-screen bg-bg font-mono text-fg">
+				<Navbar />
+				<main>
+					<Hero />
+					<Skillset />
+					<Projects />
+					<OpenSource />
+					<Experience />
+					<Contact />
+				</main>
 				<Footer />
-			</main>
+				<CommandBar />
+			</div>
 		</ToastCard>
 	);
 }

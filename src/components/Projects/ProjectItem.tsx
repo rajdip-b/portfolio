@@ -1,44 +1,39 @@
 import React from 'react';
 import { TProject } from '../../../types';
-import NorthEastRounded from '@mui/icons-material/NorthEastRounded';
-import Technology from '@/components/Projects/Technology';
-import { AnimationOnScroll } from 'react-animation-on-scroll';
 
 type Props = {
 	project: TProject;
+	index: number;
 };
 
-const ProjectItem: React.FC<Props> = ({ project }) => {
+const slug = (title: string) => title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+
+const ProjectItem: React.FC<Props> = ({ project, index }) => {
 	return (
-		<div
-			className={
-				'flex flex-col gap-y-2 w-full md:w-[90%] lg:w-[80%] text-dark-primary dark:text-white hover:bg-light-primary dark:hover:bg-dark-primary hover:drop-shadow-xl py-4 px-4 md:px-8 rounded-xl transition-all ease-out duration-300'
-			}
-		>
-			<div className={'flex items-center gap-x-5'}>
-				<AnimationOnScroll animateIn={'animate__fadeInUp'} animateOnce={true}>
-					<h2 className={'text-lg font-medium'}>{project.title}</h2>
-				</AnimationOnScroll>
-				<a href={project.url} target={'_blank'} rel={'noreferrer'}>
-					<NorthEastRounded />
+		<article className="grid grid-cols-1 gap-2 border-b border-line px-4 py-4 last:border-b-0 hover:bg-raised md:grid-cols-[88px_1fr_auto] md:items-start">
+			<p className="text-[12px] text-accent">-rwxr-x</p>
+			<div className="min-w-0">
+				<a
+					href={project.url}
+					target="_blank"
+					rel="noreferrer"
+					className="break-words text-fg hover:text-accent"
+				>
+					<span className="text-dim">{String(index + 1).padStart(2, '0')} </span>
+					{slug(project.title)}
+					<span className="text-comment"> # {project.title}</span>
+					<span className="ml-2 text-[12px] text-cyan">↗ {project.url.replace(/^https?:\/\//, '')}</span>
 				</a>
+				<p className="mt-2 max-w-3xl text-sm text-muted">{project.description}</p>
 			</div>
-			<AnimationOnScroll animateIn={'animate__fadeInUp'} delay={300} animateOnce={true}>
-				<h3 className={'text-sm font-light text-gray-600 dark:text-gray-300'}>{project.description}</h3>
-			</AnimationOnScroll>
-			<div className={'flex flex-wrap gap-3 mt-3'}>
-				{project.technologies.map((technology, index) => (
-					<AnimationOnScroll
-						key={index}
-						animateIn={'animate__fadeInUp'}
-						delay={index * 200}
-						animateOnce={true}
-					>
-						<Technology technology={technology} />
-					</AnimationOnScroll>
+			<ul className="flex flex-wrap gap-1 md:max-w-xs md:justify-end">
+				{project.technologies.map(tech => (
+					<li key={tech} className="border border-line px-1.5 py-0.5 text-[11px] text-comment">
+						{tech}
+					</li>
 				))}
-			</div>
-		</div>
+			</ul>
+		</article>
 	);
 };
 
